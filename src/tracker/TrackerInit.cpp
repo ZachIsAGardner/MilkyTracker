@@ -513,6 +513,7 @@ void Tracker::initSectionOrderlist(pp_int32 x, pp_int32 y)
 	button->setText(TrackerConfig::stringButtonMinus);
 	containerOrderlist->addControl(button);
 
+	// TODO: remove these
 	PPStaticText* staticText = new PPStaticText(0, NULL, NULL, PPPoint(x+2, y+2+12+12+12+2), "Length", true);
 	containerOrderlist->addControl(staticText);
 

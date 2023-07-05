@@ -46,10 +46,9 @@ void PatternEditorControl::initKeyBindings()
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_HOME, 0xFFFF, &PatternEditorControl::eventKeyDownBinding_HOME);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_END, 0xFFFF, &PatternEditorControl::eventKeyDownBinding_END);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_TAB, 0, &PatternEditorControl::eventKeyDownBinding_NextChannel);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_TAB, KeyModifierSHIFT, &PatternEditorControl::eventKeyDownBinding_NextChannel);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_TAB, KeyModifierALT, &PatternEditorControl::eventKeyDownBinding_PreviousChannel);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_TAB, KeyModifierCTRL, &PatternEditorControl::eventKeyDownBinding_PreviousChannel);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_TAB, KeyModifierSHIFT|KeyModifierALT, &PatternEditorControl::eventKeyDownBinding_PreviousChannel);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_TAB, KeyModifierSHIFT, &PatternEditorControl::eventKeyDownBinding_PreviousChannel);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_LEFT, KeyModifierCTRL, &PatternEditorControl::eventKeyDownBinding_PreviousChannel);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_RIGHT, KeyModifierCTRL, &PatternEditorControl::eventKeyDownBinding_NextChannel);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_LEFT, KeyModifierSHIFT, &PatternEditorControl::eventKeyDownBinding_LEFT);
@@ -67,7 +66,7 @@ void PatternEditorControl::initKeyBindings()
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_BACK, KeyModifierSHIFT, &PatternEditorControl::eventKeyDownBinding_DeleteLine);
 
 	eventKeyDownBindingsMilkyTracker->addBinding('Z', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Undo);
-	eventKeyDownBindingsMilkyTracker->addBinding('Y', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Redo);
+	eventKeyDownBindingsMilkyTracker->addBinding('Z', KeyModifierSHIFT|KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Redo);
 	eventKeyDownBindingsMilkyTracker->addBinding('X', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Cut);
 	eventKeyDownBindingsMilkyTracker->addBinding('C', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Copy);
 	eventKeyDownBindingsMilkyTracker->addBinding('V', KeyModifierSHIFT|KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_TransparentPaste);
