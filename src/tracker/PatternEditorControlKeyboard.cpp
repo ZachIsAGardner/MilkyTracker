@@ -71,7 +71,8 @@ void PatternEditorControl::initKeyBindings()
 	eventKeyDownBindingsMilkyTracker->addBinding('C', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Copy);
 	eventKeyDownBindingsMilkyTracker->addBinding('V', KeyModifierSHIFT|KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_TransparentPaste);
 	eventKeyDownBindingsMilkyTracker->addBinding('V', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_Paste);
-	eventKeyDownBindingsMilkyTracker->addBinding('A', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_SelectAll);
+	eventKeyDownBindingsMilkyTracker->addBinding('A', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_SelectChannel);
+	eventKeyDownBindingsMilkyTracker->addBinding('A', KeyModifierSHIFT|KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_SelectAll);
 	eventKeyDownBindingsMilkyTracker->addBinding('M', KeyModifierSHIFT, &PatternEditorControl::eventKeyCharBinding_MuteChannel);
 	eventKeyDownBindingsMilkyTracker->addBinding('M', KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_MuteChannel);
 	eventKeyDownBindingsMilkyTracker->addBinding('M', KeyModifierSHIFT|KeyModifierCTRL, &PatternEditorControl::eventKeyCharBinding_InvertMuting);
@@ -1629,6 +1630,23 @@ void PatternEditorControl::eventKeyCharBinding_TransparentPaste()
 	// If row count changed, call notifyUpdate to refresh pattern length indicator
 	if (patternEditor->getLastOperationDidChangeRows())
 		notifyUpdate();
+}
+
+void PatternEditorControl::eventKeyCharBinding_SelectChannel()
+{
+	PatternEditorTools::Position& cursor = patternEditor->getCursor();
+
+	PatternEditorTools::Position ss = patternEditor->getSelection().start, se = patternEditor->getSelection().end, cc = cursor;
+
+	markChannel(cursor.channel, false);
+
+	// if invoked by key combination, the view shouldn't be adjusted
+	// to ensure a visible cursor, just stay where you are
+	assureCursor = false;
+	// but an update might be useful
+	assureUpdate = true;
+	// remember cursor position
+	cursorCopy = patternEditor->getCursor();
 }
 
 void PatternEditorControl::eventKeyCharBinding_SelectAll()

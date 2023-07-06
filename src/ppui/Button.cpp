@@ -40,7 +40,7 @@ PPButton::PPButton(pp_int32 id, PPScreen* parentScreen, EventListenerInterface* 
 	update(update),
 	verticalText(false),
 	flat(false),
-	autoSizeFont(true),
+	autoSizeFont(false),
 	offset(0,0),
 	invertShading(false),
 	lMouseDown(false), rMouseDown(false)
@@ -48,7 +48,7 @@ PPButton::PPButton(pp_int32 id, PPScreen* parentScreen, EventListenerInterface* 
 	// default colors
 	pressed = false;
 	
-	font = PPFont::getFont(PPFont::FONT_SYSTEM);
+	font = PPFont::getFont(PPFont::FONT_LARGE);
 }
 
 PPButton::~PPButton()

@@ -359,10 +359,10 @@ bool Tracker::updateSpeed(bool repaint)
 		lastBPM = bpm;
 		lastSpeed = speed;
 		lastMainVol = mainvol;
-		PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SPEED));
+		PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SONGEDIT));
 		static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_SPEED_SPEED))->setIntValue(speed, 2);		
 		static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_SPEED_BPM))->setIntValue(bpm, 3);
-		static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_SPEED_MAINVOL))->setHexValue((mainvol*64)/255, 2);
+		// static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_SPEED_MAINVOL))->setHexValue((mainvol*64)/255, 2);
 		
 		screen->paintControl(container, repaint);
 		return true;
@@ -375,7 +375,7 @@ bool Tracker::updateSpeed(bool repaint)
 ///////////////////////////////////////////
 void Tracker::updatePatternAddAndOctave(bool repaint)
 {
-	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SPEED));
+	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SONGEDIT));
 
 	pp_int32 currentPatternAdd = getPatternEditorControl()->getRowInsertAdd();
 	static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_SPEED_PATTERNADD))->setIntValue(currentPatternAdd, 2);
@@ -411,7 +411,7 @@ void Tracker::updatePatternIndex(bool repaint)
 ///////////////////////////////////////////
 void Tracker::updatePatternLength(bool repaint)
 {
-	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_PATTERN));
+	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SONGEDIT));
 	static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_PATTERN_LENGTH))->setHexValue(getPatternEditor()->getNumRows(),3);
 	
 	screen->paintControl(container, repaint);

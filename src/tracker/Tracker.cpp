@@ -2294,7 +2294,9 @@ void Tracker::setInputControl(SIPs sip)
 
 void Tracker::expandOrderlist(bool b)
 {
-	extendedOrderlist = b;
+    return;
+
+    extendedOrderlist = b;
 	
 	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_ORDERLIST));
 	
@@ -2311,11 +2313,11 @@ void Tracker::expandOrderlist(bool b)
 		
 		container->getControlByID(BUTTON_ORDERLIST_REPEAT_PLUS)->hide(true);
 		container->getControlByID(BUTTON_ORDERLIST_REPEAT_MINUS)->hide(true);
-		// container->getControlByID(STATICTEXT_ORDERLIST_SONGLENGTH)->setLocation(PPPoint(x+ 8*12, y+2+12+12+12+2+12));
-		// container->getControlByID(STATICTEXT_ORDERLIST_REPEAT)->hide(true);
-		// container->getControlByID(0)->hide(true);
-		// container->getControlByID(1)->hide(false);
-		// container->getControlByID(2)->hide(true);
+		container->getControlByID(STATICTEXT_ORDERLIST_SONGLENGTH)->setLocation(PPPoint(x+ 8*12, y+2+12+12+12+2+12));
+		container->getControlByID(STATICTEXT_ORDERLIST_REPEAT)->hide(true);
+		container->getControlByID(0)->hide(true);
+		container->getControlByID(1)->hide(false);
+		container->getControlByID(2)->hide(true);
 		static_cast<PPButton*>(container->getControlByID(BUTTON_ORDERLIST_EXTENT))->setText(TrackerConfig::stringButtonExtended);
 	
 		PPSize size = container->getControlByID(LISTBOX_ORDERLIST)->getSize();
@@ -2329,11 +2331,11 @@ void Tracker::expandOrderlist(bool b)
 
 		container->getControlByID(BUTTON_ORDERLIST_REPEAT_PLUS)->hide(false);
 		container->getControlByID(BUTTON_ORDERLIST_REPEAT_MINUS)->hide(false);
-		// container->getControlByID(STATICTEXT_ORDERLIST_SONGLENGTH)->setLocation(PPPoint(x+2 + 8*7, y+2+12+12+12+2));
-		// container->getControlByID(STATICTEXT_ORDERLIST_REPEAT)->hide(false);
-		// container->getControlByID(0)->hide(false);
-		// container->getControlByID(1)->hide(true);
-		// container->getControlByID(2)->hide(false);
+		container->getControlByID(STATICTEXT_ORDERLIST_SONGLENGTH)->setLocation(PPPoint(x+2 + 8*7, y+2+12+12+12+2));
+		container->getControlByID(STATICTEXT_ORDERLIST_REPEAT)->hide(false);
+		container->getControlByID(0)->hide(false);
+		container->getControlByID(1)->hide(true);
+		container->getControlByID(2)->hide(false);
 		static_cast<PPButton*>(container->getControlByID(BUTTON_ORDERLIST_EXTENT))->setText(TrackerConfig::stringButtonCollapsed);
 
 		PPSize size = container->getControlByID(LISTBOX_ORDERLIST)->getSize();

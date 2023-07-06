@@ -42,7 +42,7 @@ PPStaticText::PPStaticText(pp_int32 id,	PPScreen* parentScreen, EventListenerInt
 	text(text),
 	extent(-1, -1)
 {
-	font = PPFont::getFont(PPFont::FONT_SYSTEM);		
+	font = PPFont::getFont(PPFont::FONT_LARGE);		
 
 	calcExtent();
 }

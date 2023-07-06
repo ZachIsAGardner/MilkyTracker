@@ -134,7 +134,7 @@ PPListBox::PPListBox(pp_int32 id, PPScreen* parentScreen, EventListenerInterface
 	// create background button
 	initialize();
 
-	font = PPFont::getFont(PPFont::FONT_SYSTEM);
+	font = PPFont::getFont(PPFont::FONT_LARGE);
 
 	adjustScrollbars();
 

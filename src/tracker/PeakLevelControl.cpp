@@ -61,10 +61,7 @@ PeakLevelControl::~PeakLevelControl()
 }
 
 void PeakLevelControl::paint(PPGraphicsAbstract* g)
-{
-	if (!isVisible())
-		return;
-	
+{	
 	pp_int32 xOffset = 2;
 
 	pp_int32 yOffset = 2;

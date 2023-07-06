@@ -105,7 +105,7 @@ private:
 	pp_int32 SCOPESHEIGHT();
 	pp_int32 CURRENTSCOPESHEIGHT();
 	pp_int32 UPPERSECTIONDEFAULTHEIGHTWOINS()	{ return 54+64; }
-	pp_int32 UPPERSECTIONDEFAULTHEIGHT()		{ return ((UPPERSECTIONDEFAULTHEIGHTWOINS())+(CURRENTSCOPESHEIGHT())); }
+	pp_int32 UPPERSECTIONDEFAULTHEIGHT()		{ return 236; }
 	pp_int32 INSTRUMENTSECTIONDEFAULTHEIGHT()	{ return 206; }
 	pp_int32 SAMPLESECTIONDEFAULTHEIGHT();
 	pp_int32 TABHEADERHEIGHT()					{ return 16; }
@@ -195,7 +195,9 @@ private:
 	PPListBox* listBoxSamples;
 
 	// - build UI parts --------------------------------------------------------
+	void initSectionTopButtons(pp_int32 x, pp_int32 y);
 	void initSectionOrderlist(pp_int32 x, pp_int32 y);
+	void initSectionSongEdit(pp_int32 x, pp_int32 y);
 	void initSectionSpeed(pp_int32 x, pp_int32 y);
 	void initSectionPattern(pp_int32 x, pp_int32 y);
 	void initSectionMainOptions(pp_int32 x, pp_int32 y);

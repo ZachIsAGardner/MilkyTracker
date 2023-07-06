@@ -25,6 +25,16 @@
 
 enum
 {	
+	// Element Height
+	EH = 16,
+	EW = 80,
+	EWS = 20,
+	TH = 160,
+	CHR = 12,
+	CONTAINER_SONGEDIT = 69420+1,
+	CONTAINER_TOPBUTTONS = 69420+2,
+	// Padding
+	P = 4,
 	BUTTON_0 =							100,
 	BUTTON_1 =							101,
 	BUTTON_2 =							102,

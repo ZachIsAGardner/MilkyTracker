@@ -506,6 +506,7 @@ private:
 	void eventKeyCharBinding_Copy();	// Operates on block
 	void eventKeyCharBinding_Paste();   // Operates on block
 	void eventKeyCharBinding_TransparentPaste();
+	void eventKeyCharBinding_SelectChannel();
 	void eventKeyCharBinding_SelectAll();
 	void eventKeyCharBinding_MuteChannel();
 	void eventKeyCharBinding_InvertMuting();

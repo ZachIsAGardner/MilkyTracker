@@ -45,7 +45,10 @@ PatternEditorControl::PatternEditorControl(pp_int32 id, PPScreen* parentScreen, 
 	cursorColor(&TrackerConfig::colorPatternEditorCursorLine),
 	selectionColor(&TrackerConfig::colorPatternEditorSelection),
 	font(NULL),
-	hTopScrollbar(NULL), hBottomScrollbar(NULL), vLeftScrollbar(NULL), vRightScrollbar(NULL),
+	hTopScrollbar(NULL), 
+	hBottomScrollbar(NULL), 
+	vLeftScrollbar(NULL), 
+	vRightScrollbar(NULL),
 	caughtControl(NULL),
 	controlCaughtByLMouseButton(false), controlCaughtByRMouseButton(false),
 	patternEditor(NULL), module(NULL), pattern(NULL),
@@ -90,7 +93,7 @@ PatternEditorControl::PatternEditorControl(pp_int32 id, PPScreen* parentScreen, 
 	vLeftScrollbar = new PPScrollbar(0, parentScreen, this, PPPoint(location.x, location.y), size.height, false);
 	vRightScrollbar = new PPScrollbar(1, parentScreen, this, PPPoint(location.x + size.width - SCROLLBARWIDTH, location.y), size.height, false);
 	hTopScrollbar = new PPScrollbar(2, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y), size.width - SCROLLBARWIDTH*2, true);		
-	hBottomScrollbar = new PPScrollbar(3, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y + size.height - SCROLLBARWIDTH), size.width - SCROLLBARWIDTH*2, true);
+	hBottomScrollbar = new PPScrollbar(3, parentScreen, this, PPPoint(location.x, location.y + size.height - SCROLLBARWIDTH), size.width - SCROLLBARWIDTH, true);
 	
 	songPos.orderListIndex = songPos.row = -1;
 
@@ -101,8 +104,8 @@ PatternEditorControl::PatternEditorControl(pp_int32 id, PPScreen* parentScreen, 
 	editMenuControl->addEntry("Solo channel", MenuCommandIDSoloChannel);
 	editMenuControl->addEntry("Unmute all", MenuCommandIDUnmuteAll);
 	editMenuControl->addEntry("\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4", -1);
-	editMenuControl->addEntry("Mark channel", MenuCommandIDSelectChannel);
-	editMenuControl->addEntry("Mark all", MenuCommandIDSelectAll);
+	editMenuControl->addEntry("Select channel", MenuCommandIDSelectChannel);
+	editMenuControl->addEntry("Select all", MenuCommandIDSelectAll);
 	editMenuControl->addEntry("\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4", -1);
 	editMenuControl->addEntry("Undo", MenuCommandIDUndo);
 	editMenuControl->addEntry("Redo", MenuCommandIDRedo);
@@ -110,9 +113,7 @@ PatternEditorControl::PatternEditorControl(pp_int32 id, PPScreen* parentScreen, 
 	editMenuControl->addEntry("Cut", MenuCommandIDCut);
 	editMenuControl->addEntry("Copy", MenuCommandIDCopy);
 	editMenuControl->addEntry("Paste", MenuCommandIDPaste);
-	editMenuControl->addEntry("Porous Paste", MenuCommandIDPorousPaste);
-	editMenuControl->addEntry("\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4", -1);
-	editMenuControl->addEntry("Swap channels", MenuCommandIDSwapChannels);
+	// editMenuControl->addEntry("Porous Paste", MenuCommandIDPorousPaste);
 
 	editMenuControl->setNotifyParentOnHide(true);
 
@@ -136,9 +137,9 @@ PatternEditorControl::~PatternEditorControl()
 	if (patternEditor)
 		patternEditor->removeNotificationListener(this);
 
-	delete vLeftScrollbar;	
+	// delete vLeftScrollbar;	
 	delete vRightScrollbar;
-	delete hTopScrollbar;
+	// delete hTopScrollbar;
 	delete hBottomScrollbar;
 
 	delete editMenuControl;
@@ -170,18 +171,18 @@ void PatternEditorControl::setSize(const PPSize& size)
 {
 	PPControl::setSize(size);
 	
-	visibleWidth = size.width - (getRowCountWidth() + 4) - SCROLLBARWIDTH*2;	
-	visibleHeight = size.height - (font->getCharHeight() + 4) - SCROLLBARWIDTH*2;
+	visibleWidth = size.width - (getRowCountWidth() + 4) - SCROLLBARWIDTH;	
+	visibleHeight = size.height - (font->getCharHeight() + 4) - SCROLLBARWIDTH;
 
-	delete vLeftScrollbar;
+	// delete vLeftScrollbar;
 	delete vRightScrollbar;
-	delete hTopScrollbar;
+	// delete hTopScrollbar;
 	delete hBottomScrollbar;
 	
-	vLeftScrollbar = new PPScrollbar(0, parentScreen, this, PPPoint(location.x, location.y), size.height, false);
+	// vLeftScrollbar = new PPScrollbar(0, parentScreen, this, PPPoint(location.x, location.y), size.height, false);
 	vRightScrollbar = new PPScrollbar(1, parentScreen, this, PPPoint(location.x + size.width - SCROLLBARWIDTH, location.y), size.height, false);
-	hTopScrollbar = new PPScrollbar(2, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y), size.width - SCROLLBARWIDTH*2, true);
-	hBottomScrollbar = new PPScrollbar(3, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y + size.height - SCROLLBARWIDTH), size.width - SCROLLBARWIDTH*2, true);			
+	// hTopScrollbar = new PPScrollbar(2, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y), size.width - SCROLLBARWIDTH*2, true);
+	hBottomScrollbar = new PPScrollbar(3, parentScreen, this, PPPoint(location.x, location.y + size.height - SCROLLBARWIDTH), size.width - SCROLLBARWIDTH, true);			
 
 	adjustScrollBarSizes();
 	assureCursorVisible();
@@ -191,18 +192,18 @@ void PatternEditorControl::setLocation(const PPPoint& location)
 {
 	PPControl::setLocation(location);
 
-	visibleWidth = size.width - (getRowCountWidth() + 4) - SCROLLBARWIDTH*2;	
-	visibleHeight = size.height - (font->getCharHeight() + 4) - SCROLLBARWIDTH*2;
+	visibleWidth = size.width - (getRowCountWidth() + 4) - SCROLLBARWIDTH;	
+	visibleHeight = size.height - (font->getCharHeight() + 4) - SCROLLBARWIDTH;
 
-	delete vLeftScrollbar;
+	// delete vLeftScrollbar;
 	delete vRightScrollbar;
-	delete hTopScrollbar;
+	// delete hTopScrollbar;
 	delete hBottomScrollbar;
 	
-	vLeftScrollbar = new PPScrollbar(0, parentScreen, this, PPPoint(location.x, location.y), size.height, false);
+	// vLeftScrollbar = new PPScrollbar(0, parentScreen, this, PPPoint(location.x, location.y), size.height, false);
 	vRightScrollbar = new PPScrollbar(1, parentScreen, this, PPPoint(location.x + size.width - SCROLLBARWIDTH, location.y), size.height, false);
-	hTopScrollbar = new PPScrollbar(2, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y), size.width - SCROLLBARWIDTH*2, true);
-	hBottomScrollbar = new PPScrollbar(3, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y + size.height - SCROLLBARWIDTH), size.width - SCROLLBARWIDTH*2, true);			
+	// hTopScrollbar = new PPScrollbar(2, parentScreen, this, PPPoint(location.x + SCROLLBARWIDTH, location.y), size.width - SCROLLBARWIDTH*2, true);
+	hBottomScrollbar = new PPScrollbar(3, parentScreen, this, PPPoint(location.x, location.y + size.height - SCROLLBARWIDTH), size.width - SCROLLBARWIDTH, true);			
 
 	adjustScrollBarSizes();
 	assureCursorVisible();
@@ -240,8 +241,8 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 	// adjust bright color
 	bCursor.scaleFixed(87163);
 
-	g->setRect(location.x+SCROLLBARWIDTH, location.y+SCROLLBARWIDTH, 
-			   location.x + size.width - SCROLLBARWIDTH, location.y + size.height - SCROLLBARWIDTH);
+	g->setRect(location.x, location.y, 
+			   location.x + size.width , location.y + size.height );
 
 	g->setColor(bgColor);
 
@@ -293,12 +294,12 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 	// ;----------------- Little adjustment for scrolling in center
 	if (properties.scrollMode == ScrollModeToCenter)
 	{
-		if ((size.height - (SCROLLBARWIDTH + ((signed)font->getCharHeight()+4)))/(signed)font->getCharHeight() > (pattern->rows - startIndex + 1) && startIndex > 0)
+		if ((size.height - (((signed)font->getCharHeight()+4)))/(signed)font->getCharHeight() > (pattern->rows - startIndex + 1) && startIndex > 0)
 			startIndex--;
 	}
 
 	// ;----------------- start painting rows
-	pp_int32 startx = location.x + SCROLLBARWIDTH + getRowCountWidth() + 4;
+	pp_int32 startx = location.x + getRowCountWidth() + 4;
 	
 	pp_int32 previousPatternIndex = currentOrderlistIndex;
 	pp_int32 previousRowIndex = 0;
@@ -329,9 +330,9 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 	{
 		i = i2 < 0 ? startIndex - i2 - 1: i2;
 
-		pp_int32 px = location.x + SCROLLBARWIDTH;
+		pp_int32 px = location.x;
 
-		pp_int32 py = location.y + (i-startIndex) * font->getCharHeight() + SCROLLBARWIDTH + (font->getCharHeight() + 4);
+		pp_int32 py = location.y + (i-startIndex) * font->getCharHeight() + (font->getCharHeight() + 4);
 
 		// rows are already in invisible area => abort
 		if (py >= location.y + size.height)
@@ -469,13 +470,13 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 		for (j = startPos; j < numVisibleChannels; j++)
 		{
 
-			pp_int32 px = (location.x + (j-startPos) * slotSize + SCROLLBARWIDTH) + (getRowCountWidth() + 4);
+			pp_int32 px = (location.x + (j-startPos) * slotSize) + (getRowCountWidth() + 4);
 			
 			// columns are already in invisible area => abort
 			if (px >= location.x + size.width)
 				break;
 			
-			pp_int32 py = location.y + SCROLLBARWIDTH;
+			pp_int32 py = location.y;
 
 			if (menuInvokeChannel == j)
 				g->setColor(255-dColor.r, 255-dColor.g, 255-dColor.b);
@@ -752,7 +753,7 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 	for (j = startPos; j < numVisibleChannels; j++)
 	{
 
-		pp_int32 px = (location.x + (j-startPos) * slotSize + SCROLLBARWIDTH) + (getRowCountWidth() + 4);
+		pp_int32 px = (location.x + (j-startPos) * slotSize) + (getRowCountWidth() + 4);
 			
 		// columns are already in invisible area => abort
 		if (px >= location.x + size.width)
@@ -779,7 +780,7 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 	// draw margin vertical line
 	g->setColor(*borderColor);
 		
-	pp_int32 px = location.x + SCROLLBARWIDTH;
+	pp_int32 px = location.x;
 	px+=getRowCountWidth() + 1;
 	g->drawVLine(location.y, location.y + size.height, px+1);
 	
@@ -792,13 +793,13 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 	// draw margin horizontal lines
 	for (j = 0; j < visibleWidth / slotSize + 1; j++)
 	{		
-		pp_int32 px = (location.x + j * slotSize + SCROLLBARWIDTH) + (getRowCountWidth() + 4) - 1;
+		pp_int32 px = (location.x + j * slotSize) + (getRowCountWidth() + 4) - 1;
 		
 		// columns are already in invisible area => abort
 		if (px >= location.x + size.width)
 			break;
 		
-		pp_int32 py = location.y + SCROLLBARWIDTH;
+		pp_int32 py = location.y;
 		
 		py+=font->getCharHeight() + 1;
 		
@@ -849,11 +850,11 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 			j1 = PPTools::clamp(j1, 0, numVisibleChannels);
 			j2 = PPTools::clamp(j2, 0, numVisibleChannels);
 			
-			pp_int32 x1 = (location.x + (j1 - startPos) * slotSize + SCROLLBARWIDTH) + cursorPositions[selectionStart.inner] + (getRowCountWidth() + 4);
-			pp_int32 y1 = (location.y + (i1 - startIndex) * font->getCharHeight() + SCROLLBARWIDTH) + (font->getCharHeight() + 4);
+			pp_int32 x1 = (location.x + (j1 - startPos) * slotSize) + cursorPositions[selectionStart.inner] + (getRowCountWidth() + 4);
+			pp_int32 y1 = (location.y + (i1 - startIndex) * font->getCharHeight()) + (font->getCharHeight() + 4);
 			
-			pp_int32 x2 = (location.x + (j2 - startPos) * slotSize + SCROLLBARWIDTH) + cursorPositions[selectionEnd.inner]+cursorSizes[selectionEnd.inner] + (getRowCountWidth() + 3);
-			pp_int32 y2 = (location.y + (i2 - startIndex) * font->getCharHeight() + SCROLLBARWIDTH) + (font->getCharHeight() * 2 + 2);
+			pp_int32 x2 = (location.x + (j2 - startPos) * slotSize) + cursorPositions[selectionEnd.inner]+cursorSizes[selectionEnd.inner] + (getRowCountWidth() + 3);
+			pp_int32 y2 = (location.y + (i2 - startIndex) * font->getCharHeight()) + (font->getCharHeight() * 2 + 2);
 			
 			// use a different color for cloning the selection instead of moving it
 			if (::getKeyModifier() & selectionKeyModifier)
@@ -879,9 +880,9 @@ void PatternEditorControl::paint(PPGraphicsAbstract* g)
 	}
 	
 	// draw scrollbars
-	hTopScrollbar->paint(g);
+	// hTopScrollbar->paint(g);
 	hBottomScrollbar->paint(g);
-	vLeftScrollbar->paint(g); 	
+	// vLeftScrollbar->paint(g); 	
 	vRightScrollbar->paint(g); 
 }
 
@@ -942,8 +943,8 @@ pp_int32 PatternEditorControl::getRowCountWidth()
 
 void PatternEditorControl::adjustExtents()
 {
-	visibleWidth = size.width - (getRowCountWidth() + 4) - SCROLLBARWIDTH*2;	
-	visibleHeight = size.height - (font->getCharHeight() + 4) - SCROLLBARWIDTH*2;
+	visibleWidth = size.width - (getRowCountWidth() + 4) - SCROLLBARWIDTH;	
+	visibleHeight = size.height - (font->getCharHeight() + 4) - SCROLLBARWIDTH;
 	
 	slotSize = 10*font->getCharWidth() + 3*1 + 4 + 3*properties.spacing;
 
@@ -974,13 +975,13 @@ void PatternEditorControl::adjustVerticalScrollBarPositions(mp_sint32 startIndex
 	{
 		pp_int32 visibleItems = (visibleHeight) / font->getCharHeight();
 		float v = (float)(pattern->rows - visibleItems);
-		vLeftScrollbar->setBarPosition((pp_int32)(startIndex*(65536.0f/v)));
+		// vLeftScrollbar->setBarPosition((pp_int32)(startIndex*(65536.0f/v)));
 		vRightScrollbar->setBarPosition((pp_int32)(startIndex*(65536.0f/v)));
 	}
 	else
 	{
 		float v = (float)patternEditor->getCursor().row / (float)(pattern->rows-1);
-		vLeftScrollbar->setBarPosition((pp_int32)(65536.0f*v));
+		// vLeftScrollbar->setBarPosition((pp_int32)(65536.0f*v));
 		vRightScrollbar->setBarPosition((pp_int32)(65536.0f*v));
 	}
 }
@@ -991,7 +992,7 @@ void PatternEditorControl::adjustHorizontalScrollBarPositions(mp_sint32 startPos
 
 	float v = (float)(patternEditor->getNumChannels() - visibleItems);
 
-	hTopScrollbar->setBarPosition((pp_int32)(startPos*(65536.0f/v)));
+	// hTopScrollbar->setBarPosition((pp_int32)(startPos*(65536.0f/v)));
 	hBottomScrollbar->setBarPosition((pp_int32)(startPos*(65536.0f/v)));
 }
 
@@ -1011,11 +1012,11 @@ void PatternEditorControl::adjustScrollBarSizes()
 			s = 1.0f;
 	}
 	
-	vLeftScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
+	// vLeftScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
 	vRightScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
 
 	s = (float)(visibleWidth) / (float)(patternEditor->getNumChannels()*slotSize);
-	hTopScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
+	// hTopScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
 	hBottomScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
 }
 
@@ -1269,12 +1270,12 @@ void PatternEditorControl::validate()
 	adjustScrollBarSizes();
 	/*float s = (float)(visibleHeight) / (float)(pattern->rows*(font->getCharHeight()));
 	
-	vLeftScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
+	// vLeftScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
 	vRightScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
 	
 	s = (float)(visibleWidth) / (float)(numVisibleChannels*slotSize);
 	
-	hTopScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
+	// hTopScrollbar->setBarSize((pp_int32)(s*65536.0f), false);
 	hBottomScrollbar->setBarSize((pp_int32)(s*65536.0f), false);*/
 	
 	PatternEditorTools::Position& cursor = patternEditor->getCursor();

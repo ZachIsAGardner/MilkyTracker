@@ -112,7 +112,7 @@ pp_int32 PatternEditorControl::dispatchEvent(PPEvent* event)
 		{			
 			PPPoint* p = (PPPoint*)event->getDataPtr();
 
-			if (hTopScrollbar->hit(*p))
+			if (false && hTopScrollbar->hit(*p))
 			{
 				if (controlCaughtByLMouseButton)
 					break;
@@ -129,7 +129,7 @@ pp_int32 PatternEditorControl::dispatchEvent(PPEvent* event)
 				caughtControl->dispatchEvent(event);
 			}
 			// Clicked on vertical scrollbar -> route event to scrollbar and catch scrollbar control
-			else if (vLeftScrollbar->hit(*p))
+			else if (false && vLeftScrollbar->hit(*p))
 			{
 				if (controlCaughtByLMouseButton)
 					break;
@@ -152,8 +152,8 @@ pp_int32 PatternEditorControl::dispatchEvent(PPEvent* event)
 
 				PPPoint cp = *p;
 				
-				cp.x-=location.x + SCROLLBARWIDTH + getRowCountWidth() + 4;
-				cp.y-=location.y + SCROLLBARWIDTH + font->getCharHeight() + 4;
+				cp.x-=location.x + getRowCountWidth() + 4;
+				cp.y-=location.y + font->getCharHeight() + 4;
 				
 				if (cp.x < 0)
 					break;
@@ -187,8 +187,8 @@ pp_int32 PatternEditorControl::dispatchEvent(PPEvent* event)
 
 			PPPoint cp = *((PPPoint*)event->getDataPtr());
 			
-			cp.x-=location.x + SCROLLBARWIDTH + getRowCountWidth() + 4;
-			cp.y-=location.y + SCROLLBARWIDTH + font->getCharHeight() + 4;
+			cp.x-=location.x + getRowCountWidth() + 4;
+			cp.y-=location.y + font->getCharHeight() + 4;
 			
 			if (cp.x < 0 || RMouseDownInChannelHeading == -1)
 				break;
@@ -219,7 +219,7 @@ pp_int32 PatternEditorControl::dispatchEvent(PPEvent* event)
 			PPPoint* p = (PPPoint*)event->getDataPtr();
 
 			// Clicked on horizontal scrollbar -> route event to scrollbar and catch scrollbar control
-			if (hTopScrollbar->hit(*p))
+			if (false && hTopScrollbar->hit(*p))
 			{
 				if (controlCaughtByRMouseButton)
 					break;
@@ -236,7 +236,7 @@ pp_int32 PatternEditorControl::dispatchEvent(PPEvent* event)
 				caughtControl->dispatchEvent(event);
 			}
 			// Clicked on vertical scrollbar -> route event to scrollbar and catch scrollbar control
-			else if (vLeftScrollbar->hit(*p))
+			else if (false && vLeftScrollbar->hit(*p))
 			{
 				if (controlCaughtByRMouseButton)
 					break;
@@ -257,8 +257,8 @@ pp_int32 PatternEditorControl::dispatchEvent(PPEvent* event)
 			{
 				PPPoint cp = *p;
 				
-				cp.x-=location.x + SCROLLBARWIDTH + getRowCountWidth() + 4;
-				cp.y-=location.y + SCROLLBARWIDTH + font->getCharHeight() + 4;
+				cp.x-=location.x + getRowCountWidth() + 4;
+				cp.y-=location.y + font->getCharHeight() + 4;
 				
 				if (cp.y <  -((pp_int32)font->getCharHeight() + 6))
 					break;
@@ -341,8 +341,8 @@ unmuteAll:
 					}
 				
 					// show menu
-					pp_int32 menuPosY = location.y + SCROLLBARWIDTH + 1 + font->getCharHeight();
-					pp_int32 menuPosX = location.x + SCROLLBARWIDTH + getRowCountWidth() + 4 + slotSize * (i - startPos);
+					pp_int32 menuPosY = location.y + 1 + font->getCharHeight();
+					pp_int32 menuPosX = location.x + getRowCountWidth() + 4 + slotSize * (i - startPos);
 				
 					PPPoint p2(menuPosX, menuPosY);
 
@@ -622,8 +622,8 @@ unmuteAll:
 						// translate into local coordinate system
 						PPPoint cp = *p;
 						
-						cp.x-=location.x + SCROLLBARWIDTH + getRowCountWidth() + 4;
-						cp.y-=location.y + SCROLLBARWIDTH + font->getCharHeight() + 4;
+						cp.x-=location.x + getRowCountWidth() + 4;
+						cp.y-=location.y + font->getCharHeight() + 4;
 						
 						// not in our local CS
 						if (cp.x < 0 || cp.y < 0)
@@ -657,24 +657,24 @@ markOrMoveSelection:
 
 			PPPoint cp2 = cp;
 
-			cp.x-=location.x + SCROLLBARWIDTH + getRowCountWidth() + 4;
-			cp.y-=location.y + SCROLLBARWIDTH + font->getCharHeight() + 4;
+			cp.x-=location.x + getRowCountWidth() + 4;
+			cp.y-=location.y + font->getCharHeight() + 4;
 			
 			cp2.x-=location.x;
 			cp2.y-=location.y;
 
-			if (cp2.x > size.width - SCROLLBARWIDTH /*- (slotSize>>1)*/)
+			if (cp2.x > size.width /*- (slotSize>>1)*/)
 			{
 				if (startPos + (visibleWidth / slotSize) < patternEditor->getNumChannels())
 					startPos++;
 			}
-			else if (cp2.x < SCROLLBARWIDTH + (signed)getRowCountWidth() + 4)
+			else if (cp2.x < (signed)getRowCountWidth() + 4)
 			{
 				if (startPos > 0)
 					startPos--;
 			}
 	
-			if (cp2.y > size.height - SCROLLBARWIDTH /*- ((signed)font->getCharHeight()*3)*/)
+			if (cp2.y > size.height  /*- ((signed)font->getCharHeight()*3)*/)
 			{
 				if (properties.scrollMode != ScrollModeStayInCenter)
 				{
@@ -687,7 +687,7 @@ markOrMoveSelection:
 					assureCursorVisible(true, false);
 				}
 			}
-			else if (cp2.y < SCROLLBARWIDTH + ((signed)font->getCharHeight()*4 /*+ 4*/))
+			else if (cp2.y < ((signed)font->getCharHeight()*4 /*+ 4*/))
 			{
 				if (properties.scrollMode != ScrollModeStayInCenter)
 				{
@@ -1133,8 +1133,8 @@ pp_int32 PatternEditorControl::handleEvent(PPObject* sender, PPEvent* event)
 				
 				PPPoint cp(metaData->p);
 				
-				cp.x-=location.x + SCROLLBARWIDTH + getRowCountWidth() + 4;
-				cp.y-=location.y + SCROLLBARWIDTH + font->getCharHeight() + 4;
+				cp.x-=location.x + getRowCountWidth() + 4;
+				cp.y-=location.y + font->getCharHeight() + 4;
 				
 				pp_int32 menuInvokeChannel = pointInChannelHeading(cp);
 				if (menuInvokeChannel != -1 && menuInvokeChannel != this->menuInvokeChannel) 
