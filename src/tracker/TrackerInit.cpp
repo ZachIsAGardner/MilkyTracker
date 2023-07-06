@@ -340,16 +340,17 @@ void Tracker::initUI()
 
     screen->addControl(containerAbout);
 
-    // small sections
+    // Hide these
     initSectionSpeed(116 - 2 - 2000, 24);
     initSectionPattern(116 - 4 + 99 - 2000, 24);
+    initSectionMainOptions(-2000, 64);
 
+    // Custom layout
     initSectionTopButtons(0, 0);
     initSectionOrderlist(0, EH + (P * 2));
     initSectionSongEdit(144, EH + (P * 2));
 
     // Main options
-    initSectionMainOptions(-2000, 64);
 
     // ---------- Instrument & Sample listboxes ----------
     initListboxesSection(592, 0);

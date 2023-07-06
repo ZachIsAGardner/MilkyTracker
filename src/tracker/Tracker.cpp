@@ -363,7 +363,9 @@ void Tracker::setNumChannels(pp_int32 numChannels, bool repaint/* = true*/)
 void Tracker::showSongSettings(bool show)
 {
 	screen->getControlByID(CONTAINER_ABOUT)->show(show);
+	screen->getControlByID(CONTAINER_TOPBUTTONS)->show(show);
 	screen->getControlByID(CONTAINER_ORDERLIST)->show(show);
+	screen->getControlByID(CONTAINER_SONGEDIT)->show(show);
 	screen->getControlByID(CONTAINER_SPEED)->show(show);
 	screen->getControlByID(CONTAINER_PATTERN)->show(show);
 }
