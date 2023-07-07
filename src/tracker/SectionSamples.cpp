@@ -645,7 +645,7 @@ void SectionSamples::init(pp_int32 x, pp_int32 y)
 		radioGroup->addItem("Ping-pong");
 	radioGroup->addItem("One shot");
 
-	container->addControl(radioGroup);	
+    container->addControl(radioGroup);	
 
 	containerEntire->addControl(container);
 
@@ -701,51 +701,51 @@ void SectionSamples::init(pp_int32 x, pp_int32 y)
 	container = new PPContainer(CONTAINER_SAMPLE_EDIT5, screen, this, PPPoint(x2, y2), PPSize(conSize7,56), false);
 	container->setColor(TrackerConfig::colorThemeMain);
 
-	container->addControl(new PPStaticText(STATICTEXT_DISPLAY, NULL, NULL, PPPoint(x2 + 2 + 2, y2 + 4), screen->getWidth() < 800 ? "Displ." : "Display", true));		
-	container->addControl(new PPStaticText(STATICTEXT_LENGTH, NULL, NULL, PPPoint(x2 + 2 + 2, y2 + 4+13), "Length", true));		
-	container->addControl(new PPStaticText(STATICTEXT_REPSTART, screen, this, PPPoint(x2 + 2 + 2, y2 + 4+13*2), "Repeat", true));		
-	container->addControl(new PPStaticText(STATICTEXT_REPLEN, screen, this, PPPoint(x2 + 2 + 2, y2 + 4+13*3), "Replen.", true));		
+	container->addControl(new PPStaticText(STATICTEXT_DISPLAY, NULL, NULL, PPPoint(-5000+x2 + 2 + 2, y2 + 4), screen->getWidth() < 800 ? "Displ." : "Display", true));		
+	container->addControl(new PPStaticText(STATICTEXT_LENGTH, NULL, NULL, PPPoint(-5000+x2 + 2 + 2, y2 + 4+13), "Length", true));		
+	container->addControl(new PPStaticText(STATICTEXT_REPSTART, screen, this, PPPoint(-5000+x2 + 2 + 2, y2 + 4+13*2), "Repeat", true));		
+	container->addControl(new PPStaticText(STATICTEXT_REPLEN, screen, this, PPPoint(-5000+x2 + 2 + 2, y2 + 4+13*3), "Replen.", true));		
 
 	x2 = screen->getWidth()-43-3 - 4 - 8*8;
 
-	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_DISPLAY, screen, this, PPPoint(x2, y2 + 4), "12345678", false));		
-	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_LENGTH, screen, this, PPPoint(x2, y2 + 4+13), "12345678", false));		
-	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_REPSTART, screen, this, PPPoint(x2, y2 + 4+13*2), "12345678", false));		
-	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_REPLENGTH, screen, this, PPPoint(x2, y2 + 4+13*3), "12345678", false));		
+	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_DISPLAY, screen, this, PPPoint(-5000+x2, y2 + 4), "12345678", false));		
+	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_LENGTH, screen, this, PPPoint(-5000+x2, y2 + 4+13), "12345678", false));		
+	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_REPSTART, screen, this, PPPoint(-5000+x2, y2 + 4+13*2), "12345678", false));		
+	container->addControl(new PPStaticText(STATICTEXT_SAMPLE_REPLENGTH, screen, this, PPPoint(-5000+x2, y2 + 4+13*3), "12345678", false));		
 
 	x2 = screen->getWidth()-43-3;
 
-	button = new PPButton(BUTTON_SAMPLE_EDIT_CLEAR, screen, this, PPPoint(x2, y2+2), PPSize(43, 12));
+	button = new PPButton(BUTTON_SAMPLE_EDIT_CLEAR, screen, this, PPPoint(-5000+x2, y2+2), PPSize(43, 12));
 	button->setText("Clear");
 	container->addControl(button);
 
-	button = new PPButton(BUTTON_SAMPLE_EDIT_MINIMIZE, screen, this, PPPoint(x2, y2+2+13), PPSize(29, 12));
+	button = new PPButton(BUTTON_SAMPLE_EDIT_MINIMIZE, screen, this, PPPoint(-5000+x2, y2+2+13), PPSize(29, 12));
 	button->setText("Min");
 	container->addControl(button);
 
-	button = new PPButton(BUTTON_FLIPNUMBERFORMAT, screen, this, PPPoint(x2+30, y2+2+13), PPSize(13, 12));
+	button = new PPButton(BUTTON_FLIPNUMBERFORMAT, screen, this, PPPoint(-5000+x2+30, y2+2+13), PPSize(13, 12));
 	button->setColor(TrackerConfig::colorThemeMain);
 	button->setTextColor(PPUIConfig::getInstance()->getColor(PPUIConfig::ColorStaticText));
 	button->setText("H");
 	container->addControl(button);
 
-	button = new PPButton(BUTTON_SAMPLE_EDIT_REPSTARTPLUS, screen, this, PPPoint(x2, y2+2+13*2), PPSize(14, 12));
+	button = new PPButton(BUTTON_SAMPLE_EDIT_REPSTARTPLUS, screen, this, PPPoint(-5000+x2, y2+2+13*2), PPSize(14, 12));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 
-	button = new PPButton(BUTTON_SAMPLE_EDIT_REPSTARTMINUS, screen, this, PPPoint(x2+15, y2+2+13*2), PPSize(14, 12));
+	button = new PPButton(BUTTON_SAMPLE_EDIT_REPSTARTMINUS, screen, this, PPPoint(-5000+x2+15, y2+2+13*2), PPSize(14, 12));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 
-	button = new PPButton(BUTTON_SAMPLE_EDIT_REPLENPLUS, screen, this, PPPoint(x2, y2+2+13*3), PPSize(14, 12));
+	button = new PPButton(BUTTON_SAMPLE_EDIT_REPLENPLUS, screen, this, PPPoint(-5000+x2, y2+2+13*3), PPSize(14, 12));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 
-	button = new PPButton(BUTTON_SAMPLE_EDIT_REPLENMINUS, screen, this, PPPoint(x2+15, y2+2+13*3), PPSize(14, 12));
+	button = new PPButton(BUTTON_SAMPLE_EDIT_REPLENMINUS, screen, this, PPPoint(-5000+x2+15, y2+2+13*3), PPSize(14, 12));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 
-	button = new PPButton(BUTTON_SHOWRANGE, screen, this, PPPoint(x2+15+15, y2+2+13*2), PPSize(13, 12*2+1));
+	button = new PPButton(BUTTON_SHOWRANGE, screen, this, PPPoint(-5000+x2+15+15, y2+2+13*2), PPSize(13, 12*2+1));
 	button->setColor(TrackerConfig::colorThemeMain);
 	button->setTextColor(PPUIConfig::getInstance()->getColor(PPUIConfig::ColorStaticText));
 	button->setFont(PPFont::getFont(PPFont::FONT_TINY));

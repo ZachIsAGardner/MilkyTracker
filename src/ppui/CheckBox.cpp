@@ -27,7 +27,7 @@
 #include "Screen.h"
 #include "Font.h"
 
-static const char* checked = "\xFF";
+static const char* checked = "/";
 static const char* notChecked = "\x20";
 
 PPCheckBox::PPCheckBox(pp_int32 id, PPScreen* parentScreen, EventListenerInterface* eventListener, 
@@ -35,7 +35,7 @@ PPCheckBox::PPCheckBox(pp_int32 id, PPScreen* parentScreen, EventListenerInterfa
 					   bool checked /* = true */) :
 	PPControl(id, parentScreen, eventListener, location, PPSize(10,10))
 {
-	button = new PPButton(id, parentScreen, this, location, this->size);
+    button = new PPButton(id, parentScreen, this, location, this->size);
 	button->setText(checked ? ::checked : ::notChecked);
 }
 

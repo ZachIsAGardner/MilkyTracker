@@ -713,7 +713,7 @@ void Tracker::eventKeyDownBinding_InvokeSectionAbout()
 
 void Tracker::eventKeyDownBinding_ToggleFT2Edit()
 {
-	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_MENU));
+	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SONGEDIT));
 	ASSERT(container);
 	
 	PPButton* button = static_cast<PPButton*>(container->getControlByID(MAINMENU_EDIT));

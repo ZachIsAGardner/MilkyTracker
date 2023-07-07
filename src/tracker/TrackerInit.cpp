@@ -434,7 +434,7 @@ void Tracker::initUI()
 #endif
 
     TitlePageManager titlePageManager(*screen);
-    titlePageManager.showSongTitleEditField(false);
+    titlePageManager.showPeakControl(true);
 
     setFollowSong(true, false);
     setProspectiveMode(false, false);
@@ -753,7 +753,7 @@ void Tracker::initSectionSongEdit(pp_int32 x, pp_int32 y)
     point.x = x + P;
     point.x += ((size + (P * 2)) / 2) - ((18 * CHR_SIZE) / 2);
     point.y += (E_HEIGHT * 2) + P;
-    staticText = new PPStaticText(STATICTEXT_ABOUT_TIME, screen, this, point, "00:00:00(00:00:00)", false);
+    staticText = playTimeText = new PPStaticText(STATICTEXT_ABOUT_TIME, screen, this, point, "00:00:00(00:00:00)", false);
     containerSongEdit->addControl(staticText);
 
     // Play

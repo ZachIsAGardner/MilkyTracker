@@ -437,10 +437,10 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 									TRANSPOSE_BUTTON_AMOUNT_OCTAVEUP, 
 									TRANSPOSE_BUTTON_AMOUNT_OCTAVEDOWN};
 
-	const char* buttonTexts[4] =  {"Note Up",
-								   "Note Dn",
-								   "Octave Up",
-								   "Octave Dn"};
+	const char* buttonTexts[4] =  {"N Up",
+								   "N Dn",
+								   "O Up",
+								   "O Dn"};
 
 	const pp_int32 buttonIDs2[4] = {TRANSPOSE_BUTTON_USER1, 
 									TRANSPOSE_BUTTON_USER2, 
@@ -669,7 +669,7 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	text = new PPStaticText(TRANSPOSE_TEXT_AMOUNT, NULL, NULL, location2, str2, false);
 	container->addControl(text);			
 
-	h = location2.x+3*8+4;
+	h = location2.x+3*8+4+12;
 	hy = location2.y;
 
 	button = new PPButton(TRANSPOSE_BUTTON_AMOUNT_PLUS, screen, this, PPPoint(h, hy), PPSize(E_WIDTH_SMALL, E_HEIGHT));
@@ -682,7 +682,7 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 
 	hy+=11;
 	h-=5*8;
-	text = new PPStaticText(TRANSPOSE_TEXT_AMOUNT2, NULL, NULL, PPPoint(h+1, hy), "note(s)", true);
+	text = new PPStaticText(TRANSPOSE_TEXT_AMOUNT2, NULL, NULL, PPPoint(h+1, hy), "", true);
 	container->addControl(text);			
 	
 	// preset buttons
@@ -697,7 +697,7 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	{
 		PPButton* button = new PPButton(buttonIDs[i], screen, this, PPPoint(x, y2), PPSize(buttonWidth, buttonHeight));
 		button->setText(buttonTexts[i]);
-		button->setFont(PPFont::getFont(PPFont::FONT_TINY));
+		button->setFont(PPFont::getFont(PPFont::FONT_LARGE));
 		container->addControl(button);
 		
 		y2+= buttonHeight+1;
@@ -812,8 +812,7 @@ void SectionTranspose::update(bool repaint/* = true*/)
 	text->setText(buffer);
 
 	text = static_cast<PPStaticText*>(container->getControlByID(TRANSPOSE_TEXT_AMOUNT2));
-	
-	text->setText(currentTransposeAmount < 0 ? "note(s)" : "note(s)");
+
 	
 	tracker.screen->paintControl(container);
 }

@@ -51,18 +51,19 @@ TitlePageManager::Pages TitlePageManager::getCurrentTitlePage()
 
 void TitlePageManager::showTitlePage(Pages page, bool update/* = true*/)
 {
-	switch (page)
-	{
-		case PageTitle:
-			showSongTitleEditField(update);
-			break;
-		case PageTime:
-			showTimeCounter(update);
-			break;
-		case PagePeak:
-			showPeakControl(update);
-			break;
-	}
+    showPeakControl();
+    // switch (page)
+	// {
+	// 	case PageTitle:
+	// 		showSongTitleEditField(update);
+	// 		break;
+	// 	case PageTime:
+	// 		showTimeCounter(update);
+	// 		break;
+	// 	case PagePeak:
+	// 		showPeakControl(update);
+	// 		break;
+	// }
 }
 
 void TitlePageManager::showSongTitleEditField(bool update/* = true*/)
@@ -124,28 +125,14 @@ void TitlePageManager::showTimeCounter(bool update/* = true*/)
 void TitlePageManager::showPeakControl(bool update/* = true*/)
 {
 	PPContainer* container = static_cast<PPContainer*>(screen.getControlByID(CONTAINER_ABOUT));
+
 	PeakLevelControl* peakLevelControl = static_cast<PeakLevelControl*>(screen.getControlByID(PEAKLEVEL_CONTROL));
-	PPButton* buttonShowPeak = static_cast<PPButton*>(container->getControlByID(BUTTON_ABOUT_SHOWPEAK));
-	PPButton* buttonShowTime = static_cast<PPButton*>(container->getControlByID(BUTTON_ABOUT_SHOWTIME));
-	PPButton* buttonShowTitle = static_cast<PPButton*>(container->getControlByID(BUTTON_ABOUT_SHOWTITLE));
+
 	PPButton* buttonTimeEstimate = static_cast<PPButton*>(container->getControlByID(BUTTON_ABOUT_ESTIMATESONGLENGTH));
-	PPStaticText* text = static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_ABOUT_HEADING));
 	PPStaticText* text2 = static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_ABOUT_TIME));
 	
-	static_cast<PPListBox*>(container->getControlByID(LISTBOX_SONGTITLE))->hide(true);
 	peakLevelControl->hide(false);
-	text2->hide(true);
-	buttonTimeEstimate->hide(true);
-
-	buttonShowPeak->setPressed(true);
-	buttonShowTime->setPressed(false);
-	buttonShowTitle->setPressed(false);
-#ifdef __LOWRES__
-	text->setText("Peak:");
-#else
-	text->setText("Peak level:");
-#endif
-	text->setColor(PPUIConfig::getInstance()->getColor(PPUIConfig::ColorStaticText));
+	text2->hide(false);
 
 	if (update)
 		screen.paintControl(container);

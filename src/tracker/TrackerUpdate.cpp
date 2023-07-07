@@ -653,7 +653,7 @@ void Tracker::updateWindowTitle()
 {
 	if (moduleEditor->hasChanged() != lastState)
 	{
-		PPSystemString title = "MilkyTracker - ";
+		PPSystemString title = "Zagawracker 0.1 - ";
 
 		title.append(currentFileName);
 
@@ -821,7 +821,7 @@ void Tracker::doFollowSong()
 		const PPColor& pColor = getPatternEditorControl()->gotFocus() ? TrackerConfig::colorRecordModeButtonText : PPUIConfig::getInstance()->getColor(PPUIConfig::ColorDefaultButtonText);
 		
 		// we're going to update the record button
-		updateRecordButton(static_cast<PPContainer*>(screen->getControlByID(CONTAINER_MENU)), pColor);
+		updateRecordButton(static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SONGEDIT)), pColor);
 		
 #ifdef __LOWRES__
 		// in low-res mode, the record buttons appears 
