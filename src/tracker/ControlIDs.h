@@ -25,16 +25,19 @@
 
 enum
 {	
-	// Element Height
-	EH = 16,
-	EW = 80,
-	EWS = 20,
-	TH = 160,
-	CHR = 12,
+	// CUSTOM
+	E_HEIGHT = 16,
+	E_WIDTH = 80,
+	E_WIDTH_SMALL = 20,
+	CHR_SIZE = 12,
+	P = 4, // Padding
+
+	TOP_HEIGHT = 160,
+	TOP_WIDTH = 592,
+
 	CONTAINER_SONGEDIT = 69420+1,
 	CONTAINER_TOPBUTTONS = 69420+2,
-	// Padding
-	P = 4,
+
 	BUTTON_0 =							100,
 	BUTTON_1 =							101,
 	BUTTON_2 =							102,
@@ -105,6 +108,8 @@ enum
 	
 	STATICTEXT_PATTERN_INDEX =			10400,
 	STATICTEXT_PATTERN_LENGTH =    		10401,
+
+	STATICTEXT_CHANNELS_LENGTH = 10420,
 	
 	// instrument/samples listboxes
 	STATICTEXT_INSTRUMENTS_ALTERNATIVEHEADER =	226,

@@ -65,11 +65,11 @@
 #include "ControlIDs.h"
 
 #ifdef __LOWRES__
-#define SECTIONHEIGHT		148
+#define SECTIONHEIGHT		TOP_HEIGHT
 #else
-#define SECTIONHEIGHT		118
+#define SECTIONHEIGHT		TOP_HEIGHT
 #endif
-#define UPPERFRAMEHEIGHT	118
+#define UPPERFRAMEHEIGHT	TOP_HEIGHT
 
 // small custom button class which will be used to show a color preview
 class PPColPrevButton : public PPButton
@@ -360,8 +360,8 @@ protected:
 
 	enum
 	{
-		PageWidth = 160,
-		PageHeight = UPPERFRAMEHEIGHT
+		PageWidth = 240,
+		PageHeight = TOP_HEIGHT
 	};
 
 public:
@@ -595,7 +595,7 @@ public:
 		container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 2, y2 + 2), "Mixer Resolution", true, true));
 
 		pp_int32 j;
-		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_MIXFREQ, screen, this, PPPoint(x2, y2+2+11), PPSize(160, TrackerConfig::numMixFrequencies*14));
+		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_MIXFREQ, screen, this, PPPoint(x2, y2+2+11), PPSize(PageWidth, TrackerConfig::numMixFrequencies*14));
 		radioGroup->setColor(TrackerConfig::colorThemeMain);
 
 		for (j = 0; j < TrackerConfig::numMixFrequencies; j++)
@@ -616,7 +616,7 @@ public:
 		// module frequencies
 		container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 2, y2 + 2), "Frequency Table", true, true));
 
-		radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_FREQTAB, screen, this, PPPoint(x2, y2+2+11), PPSize(160, 30));
+		radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_FREQTAB, screen, this, PPPoint(x2, y2+2+11), PPSize(PageWidth, 30));
 		radioGroup->setColor(TrackerConfig::colorThemeMain);
 
 		radioGroup->addItem("Amiga frequencies");
@@ -765,7 +765,7 @@ public:
         
         container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 2, y2 + 2), "XM channel limit", true, true));
         
-        PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_XMCHANNELLIMIT, screen, this, PPPoint(x2, y2+2+11), PPSize(160, 3*14));
+        PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_XMCHANNELLIMIT, screen, this, PPPoint(x2, y2+2+11), PPSize(PageWidth, 3*14));
         radioGroup->setColor(TrackerConfig::colorThemeMain);
         radioGroup->addItem("32");
         radioGroup->addItem("64");
@@ -1388,7 +1388,7 @@ public:
 
 		container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 2, y2 + 2), "Edit mode", true, true));
 
-		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_EDITMODE, screen, this, PPPoint(x2, y2+2+11), PPSize(160, 42));
+		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_EDITMODE, screen, this, PPPoint(x2, y2+2+11), PPSize(PageWidth, 42));
 		radioGroup->setColor(TrackerConfig::colorThemeMain);
 
 		radioGroup->addItem("MilkyTracker");
@@ -1403,7 +1403,7 @@ public:
 
 		container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 2, y2 + 2), "Scrolling Style", true, true));
 
-		radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_SCROLLMODE, screen, this, PPPoint(x2, y2+2+11), PPSize(160, 42));
+		radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_SCROLLMODE, screen, this, PPPoint(x2, y2+2+11), PPSize(PageWidth, 42));
 		radioGroup->setColor(TrackerConfig::colorThemeMain);
 
 		radioGroup->addItem("Scroll to end");
@@ -1614,7 +1614,7 @@ public:
 
 		container->addControl(new PPStaticText(STATICTEXT_SETTINGS_SCOPESAPPEARANCE, NULL, NULL, PPPoint(x2 + 2, y2), "Scope Style:", true));
 
-		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_SCOPESAPPEARANCE, screen, this, PPPoint(x2, y2+10), PPSize(160, 42));
+		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_SCOPESAPPEARANCE, screen, this, PPPoint(x2, y2+10), PPSize(PageWidth, 42));
 		radioGroup->setColor(TrackerConfig::colorThemeMain);
 		radioGroup->setFont(PPFont::getFont(PPFont::FONT_TINY));
 		radioGroup->addItem("Dots");
@@ -1681,7 +1681,7 @@ public:
 
 		container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 2, y2 + 2), "Stop background", true, true));
 
-		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_STOPBACKGROUNDBEHAVIOUR, screen, this, PPPoint(x2, y2+2+11), PPSize(160, 42));
+		PPRadioGroup* radioGroup = new PPRadioGroup(RADIOGROUP_SETTINGS_STOPBACKGROUNDBEHAVIOUR, screen, this, PPPoint(x2, y2+2+11), PPSize(PageWidth, 42));
 		radioGroup->setColor(TrackerConfig::colorThemeMain);
 
 		radioGroup->addItem("Never");
@@ -2757,7 +2757,7 @@ void SectionSettings::init(pp_int32 x, pp_int32 y)
 #ifdef __LOWRES__
 	pp_int32 x2 = 0;
 #else
-	pp_int32 x2 = 160;
+	pp_int32 x2 = 240;
 #endif
 
 	while (x2 < screen->getWidth())
@@ -2845,7 +2845,7 @@ void SectionSettings::init(pp_int32 x, pp_int32 y)
 #else
 	const char* subSettingsTexts[] = {"I/O","Layout","Fonts","Misc."};
 
-	x2 = screen->getWidth()-160 + 4;
+	x2 = screen->getWidth()-PageWidth + 4;
 
 	//static_cast<PPContainer*>(sectionContainer)->addControl(new PPSeperator(0, screen, PPPoint(x2 - 4, y+4), UPPERFRAMEHEIGHT-8, TrackerConfig::colorThemeMain, false));
 	static_cast<PPContainer*>(sectionContainer)->addControl(new PPSeperator(0, screen, PPPoint(x + 2, y+UPPERFRAMEHEIGHT-4), screen->getWidth()-4, TrackerConfig::colorThemeMain, true));
@@ -2916,7 +2916,7 @@ void SectionSettings::update(bool repaint/* = true*/)
 #ifdef __LOWRES__
 	pp_int32 x = 0;
 #else
-	pp_int32 x = 160;
+	pp_int32 x = 240;
 #endif
 	pp_int32 y = sectionContainer->getLocation().y;
 

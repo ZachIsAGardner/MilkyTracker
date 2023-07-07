@@ -57,13 +57,20 @@ void PlayerLogic::setLiveSwitch(bool liveSwitch)
 
 void PlayerLogic::playSong(pp_int32 row/* = 0*/)
 {
-	tracker.initPlayback();
+	if (tracker.playerController->isPlaying())
+	{
+        stopSong();
+    }
+	else
+	{
+		tracker.initPlayback();
 
-	if (stopBackgroundOnPlay)
-		stopAll();
+		if (stopBackgroundOnPlay)
+			stopAll();
 
-	pp_int32 index = tracker.moduleEditor->getCurrentOrderIndex();				
-	tracker.playerController->playSong(index, row, tracker.muteChannels);
+		pp_int32 index = tracker.moduleEditor->getCurrentOrderIndex();				
+		tracker.playerController->playSong(index, row, tracker.muteChannels);
+	}
 }
 
 void PlayerLogic::playPattern()

@@ -103,19 +103,19 @@ void Tracker::initKeyBindings()
 	eventKeyDownBindingsMilkyTracker->addBinding('7', KeyModifierCTRL|KeyModifierSHIFT, &Tracker::eventKeyDownBinding_SelectOctave7);
 	eventKeyDownBindingsMilkyTracker->addBinding('8', KeyModifierCTRL|KeyModifierSHIFT, &Tracker::eventKeyDownBinding_SelectOctave8);
 
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_RETURN, 0, &Tracker::eventKeyDownBinding_PlaySong);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_RETURN, KeyModifierCTRL, &Tracker::eventKeyDownBinding_PlayPattern);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_RETURN, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPosition);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, 0, &Tracker::eventKeyDownBinding_PlaySong);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierCTRL, &Tracker::eventKeyDownBinding_PlayPattern);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPosition);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F9, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPattern);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F10, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPatternFromFIRSTQUARTER);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F11, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPatternFromSECONDQUARTER);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F12, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayPatternFromTHIRDQUARTER);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayRow);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierCTRL, &Tracker::eventKeyDownBinding_RotatePanels);
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierSHIFT, &Tracker::eventKeyDownBinding_PlayRow);
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierCTRL, &Tracker::eventKeyDownBinding_RotatePanels);
 	// !! trace uses a hardcoded key-up event processing, check if you ever decide to change this shortcut
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierALT, &Tracker::eventKeyDownBinding_PlayTrace);
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, KeyModifierALT, &Tracker::eventKeyDownBinding_PlayTrace);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_ESCAPE, 0, &Tracker::eventKeyDownBinding_Stop);
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SPACE, 0, &Tracker::eventKeyDownBinding_Edit);
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_RETURN, 0, &Tracker::eventKeyDownBinding_Edit);
 	eventKeyDownBindingsMilkyTracker->addBinding('U', KeyModifierSHIFT, &Tracker::eventKeyDownBinding_UnmuteAll);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F4, KeyModifierALT, &Tracker::eventKeyDownBinding_ExitApplication);
 	
@@ -161,22 +161,36 @@ void Tracker::initKeyBindings()
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F7, KeyModifierALT, &Tracker::eventKeyDownBinding_TransposeCurInsBlockDown);
 	eventKeyDownBindingsMilkyTracker->addBinding(VK_F8, KeyModifierALT, &Tracker::eventKeyDownBinding_TransposeCurInsBlockUp);
 
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD0, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD1, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD2, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD3, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD4, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD5, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD6, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD7, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD8, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD9, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_MULTIPLY, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_ADD, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SEPARATOR, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_SUBTRACT, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_DECIMAL, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
-	eventKeyDownBindingsMilkyTracker->addBinding(VK_DIVIDE, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// :)
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD0, 0, &Tracker::eventKeyDownBinding_AddSet0);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD1, 0, &Tracker::eventKeyDownBinding_AddSet1);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD2, 0, &Tracker::eventKeyDownBinding_AddSet2);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD3, 0, &Tracker::eventKeyDownBinding_AddSet3);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD4, 0, &Tracker::eventKeyDownBinding_AddSet4);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD5, 0, &Tracker::eventKeyDownBinding_AddSet5);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD6, 0, &Tracker::eventKeyDownBinding_AddSet6);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD7, 0, &Tracker::eventKeyDownBinding_AddSet7);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD8, 0, &Tracker::eventKeyDownBinding_AddSet8);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD9, 0, &Tracker::eventKeyDownBinding_AddSet9);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_ADD, 0, &Tracker::eventKeyDownBinding_AddPlus);	
+	eventKeyDownBindingsMilkyTracker->addBinding(VK_SUBTRACT, 0, &Tracker::eventKeyDownBinding_AddMinus);	
+
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD0, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD1, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD2, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD3, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD4, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD5, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD6, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD7, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD8, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_NUMPAD9, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_MULTIPLY, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_ADD, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_SEPARATOR, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_SUBTRACT, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_DECIMAL, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
+	// eventKeyDownBindingsMilkyTracker->addBinding(VK_DIVIDE, 0, &Tracker::eventKeyDownBinding_InvokeQuickChooseInstrument);	
 
 	eventKeyDownBindingsMilkyTracker->addBinding('V', KeyModifierCTRL | KeyModifierSHIFT, &Tracker::eventKeyDownBinding_InvokePatternCapture);
 
@@ -1119,6 +1133,42 @@ void Tracker::eventKeyDownBinding_AddPlus() {
 
 void Tracker::eventKeyDownBinding_AddMinus() {
   getPatternEditorControl()->decreaseRowInsertAdd();
+  updatePatternAddAndOctave();
+}
+
+void Tracker::eventKeyDownBinding_AddSet0() {
+	eventKeyDownBinding_AddSet(0);
+}
+void Tracker::eventKeyDownBinding_AddSet1() {
+	eventKeyDownBinding_AddSet(1);
+}
+void Tracker::eventKeyDownBinding_AddSet2() {
+	eventKeyDownBinding_AddSet(2);
+}
+void Tracker::eventKeyDownBinding_AddSet3() {
+	eventKeyDownBinding_AddSet(3);
+}
+void Tracker::eventKeyDownBinding_AddSet4() {
+	eventKeyDownBinding_AddSet(4);
+}
+void Tracker::eventKeyDownBinding_AddSet5() {
+	eventKeyDownBinding_AddSet(5);
+}
+void Tracker::eventKeyDownBinding_AddSet6() {
+	eventKeyDownBinding_AddSet(6);
+}
+void Tracker::eventKeyDownBinding_AddSet7() {
+	eventKeyDownBinding_AddSet(7);
+}
+void Tracker::eventKeyDownBinding_AddSet8() {
+	eventKeyDownBinding_AddSet(8);
+}
+void Tracker::eventKeyDownBinding_AddSet9() {
+	eventKeyDownBinding_AddSet(9);
+}
+
+void Tracker::eventKeyDownBinding_AddSet(int add = 0) {
+  getPatternEditorControl()->setRowInsertAdd(add);
   updatePatternAddAndOctave();
 }
 

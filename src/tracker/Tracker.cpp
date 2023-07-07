@@ -1168,7 +1168,8 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 					numChannels = 2;
 
 				setModuleNumChannels(numChannels);
-				break;
+                updateChannelsLength(true);
+                break;
 			}
 
 			case BUTTON_INSTRUMENTS_PLUS:
@@ -1265,6 +1266,7 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 				updatePatternEditorControl(false);
 				updatePatternIndex(false);
 				updatePatternLength(false);
+				updateChannelsLength(false);
 #ifdef __LOWRES__
 				updateJamMenuOrder(false);
 #endif
@@ -1555,6 +1557,7 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 				{
 					case PatternEditorControl::AdvanceCodeJustUpdate:
 						updatePatternLength();
+						updateChannelsLength();
 						updatePatternAddAndOctave();
 						break;
 
@@ -1591,6 +1594,7 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 						updateSongLength(true);
 						updatePatternIndex(true);
 						updatePatternLength(true);
+						updateChannelsLength(true);
 						updateSongRow();
 						return 1;
 					}
@@ -1628,6 +1632,7 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 						updateSongLength(true);
 						updatePatternIndex(true);
 						updatePatternLength(true);
+						updateChannelsLength(true);
 						updateSongRow();
 						return 1;
 					}
@@ -1655,6 +1660,7 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 						updateSongLength(true);
 						updatePatternIndex(true);
 						updatePatternLength(true);
+						updateChannelsLength(true);
 						updateSongRow();
 						return 1;
 
@@ -1681,6 +1687,7 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 						updateSongLength(true);
 						updatePatternIndex(true);
 						updatePatternLength(true);
+						updateChannelsLength(true);
 						updateSongRow();
 						return 1;
 
@@ -1708,6 +1715,7 @@ pp_int32 Tracker::handleEvent(PPObject* sender, PPEvent* event)
 						updateSongLength(true);
 						updatePatternIndex(true);
 						updatePatternLength(true);
+						updateChannelsLength(true);
 						updateSongRow();
 						return 1;
 						

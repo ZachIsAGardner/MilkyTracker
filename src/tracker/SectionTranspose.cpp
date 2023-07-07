@@ -428,7 +428,7 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	PPScreen* screen = tracker.screen;
 
 	// test
-	PPContainer* container = new PPContainer(CONTAINER_TRANSPOSE, tracker.screen, this, PPPoint(px, py), PPSize(320,UPPERLEFTSECTIONHEIGHT), false);
+	PPContainer* container = new PPContainer(CONTAINER_TRANSPOSE, tracker.screen, this, PPPoint(px, py), PPSize(TOP_WIDTH,TOP_HEIGHT), false);
 	container->setColor(TrackerConfig::colorThemeMain);	
 	tracker.screen->addControl(container);
 
@@ -525,11 +525,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	
 	h+=8*2+4;
 	
-	button = new PPButton(TRANSPOSE_BUTTON_INS_PLUS, screen, this, PPPoint(h, hy), PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_INS_PLUS, screen, this, PPPoint(h, hy), PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	h+=button->getSize().width;
-	button = new PPButton(TRANSPOSE_BUTTON_INS_MINUS, screen, this, PPPoint(h, hy), PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_INS_MINUS, screen, this, PPPoint(h, hy), PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 	
@@ -545,11 +545,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	container->addControl(text);			
 
 	location2.x += 8*8-4;
-	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGESTART_PLUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGESTART_PLUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	location2.x+=button->getSize().width;
-	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGESTART_MINUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGESTART_MINUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 	//location2.x+=button->getSize().width + 2;
@@ -561,11 +561,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	container->addControl(text);			
 	location2.x+=8*8-4;
 
-	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGEEND_PLUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGEEND_PLUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	location2.x+=button->getSize().width;
-	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGEEND_MINUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_INS_RANGEEND_MINUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 
@@ -601,11 +601,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	
 	h+=8*3+4;
 	
-	button = new PPButton(TRANSPOSE_BUTTON_NOTE_PLUS, screen, this, PPPoint(h, hy), PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_NOTE_PLUS, screen, this, PPPoint(h, hy), PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	h+=button->getSize().width;
-	button = new PPButton(TRANSPOSE_BUTTON_NOTE_MINUS, screen, this, PPPoint(h, hy), PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_NOTE_MINUS, screen, this, PPPoint(h, hy), PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 
@@ -620,11 +620,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	container->addControl(text);			
 
 	location2.x += 8*9-4;
-	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGESTART_PLUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGESTART_PLUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	location2.x+=button->getSize().width;
-	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGESTART_MINUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGESTART_MINUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 	//location2.x+=button->getSize().width + 2;
@@ -636,11 +636,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	container->addControl(text);			
 	location2.x+=8*9-4;
 
-	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGEEND_PLUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGEEND_PLUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	location2.x+=button->getSize().width;
-	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGEEND_MINUS, screen, this, location2, PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_NOTE_RANGEEND_MINUS, screen, this, location2, PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);
 
@@ -672,11 +672,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	h = location2.x+3*8+4;
 	hy = location2.y;
 
-	button = new PPButton(TRANSPOSE_BUTTON_AMOUNT_PLUS, screen, this, PPPoint(h, hy), PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_AMOUNT_PLUS, screen, this, PPPoint(h, hy), PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	h+=button->getSize().width;
-	button = new PPButton(TRANSPOSE_BUTTON_AMOUNT_MINUS, screen, this, PPPoint(h, hy), PPSize(10, 9));
+	button = new PPButton(TRANSPOSE_BUTTON_AMOUNT_MINUS, screen, this, PPPoint(h, hy), PPSize(E_WIDTH_SMALL, E_HEIGHT));
 	button->setText(TrackerConfig::stringButtonMinus);
 	container->addControl(button);	
 
@@ -686,9 +686,9 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	container->addControl(text);			
 	
 	// preset buttons
-	pp_int32 buttonWidth = 7*8+4;
-	pp_int32 buttonHeight = 9;
-	pp_int32 spacer = 10;
+	pp_int32 buttonWidth = E_WIDTH;
+	pp_int32 buttonHeight = E_HEIGHT;
+	pp_int32 spacer = P;
 	
 	pp_int32 y2 = hy+11;
 	pp_int32 x = h-3;
@@ -703,7 +703,7 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 		y2+= buttonHeight+1;
 	}
 	
-	y2+=10;
+	y2+=E_HEIGHT;
 
 	//container->addControl(new PPSeperator(0, screen, PPPoint(location.x+2, y2), size.width-5, container->getColor(), true));
 
@@ -715,12 +715,11 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	text = new PPStaticText(6, NULL, NULL, location2, str3, true);
 	container->addControl(text);			
 	
-	buttonWidth = 60;
+	buttonWidth = E_WIDTH;
 	
 	//y2+=14;
 
-	spacer = 4;
-	buttonHeight = 14;
+	buttonHeight = E_HEIGHT;
 	pp_int32 cx = ((buttonWidth) * 4 + (spacer*3))/2;
 	x = location.x + (size.width-6*8)/2 - cx + 6*8 + 2;
 	y2-=3;
@@ -739,8 +738,8 @@ void SectionTranspose::init(pp_int32 px, pp_int32 py)
 	container->addControl(new PPSeperator(0, screen, PPPoint(location.x+2, y2), size.width-5, container->getColor(), true));	
 	
 	y2+=4;
-	buttonWidth = 8*4+4;
-	buttonHeight = 11;
+	buttonWidth = E_WIDTH;
+	buttonHeight = E_HEIGHT;
 	button = new PPButton(TRANSPOSE_BUTTON_EXIT, screen, this, PPPoint(x-buttonWidth-spacer, y2), PPSize(buttonWidth,buttonHeight));
 	button->setText("Exit");
 	container->addControl(button);

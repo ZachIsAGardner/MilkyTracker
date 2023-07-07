@@ -1306,6 +1306,7 @@ void SectionInstruments::init(pp_int32 x, pp_int32 y)
 	showSection(false);	
 }
 
+int originalHeight = 0;
 void SectionInstruments::realign()
 {
 	pp_uint32 maxShould = tracker.MAXEDITORHEIGHT();
@@ -1322,12 +1323,13 @@ void SectionInstruments::realign()
 	
 	if (visible)
 	{
+		originalHeight = control->getSize().height;
 		control->setSize(PPSize(screen->getWidth(),
-							tracker.MAXEDITORHEIGHT()-tracker.INSTRUMENTSECTIONDEFAULTHEIGHT()-tracker.UPPERSECTIONDEFAULTHEIGHT()));
+							originalHeight-tracker.INSTRUMENTSECTIONDEFAULTHEIGHT()));
 	}
 	else
 	{
-		control->setSize(PPSize(screen->getWidth(),tracker.MAXEDITORHEIGHT()-tracker.UPPERSECTIONDEFAULTHEIGHT()));
+		control->setSize(PPSize(screen->getWidth(),originalHeight));
 	}
 }
 

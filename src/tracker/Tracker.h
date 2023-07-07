@@ -262,6 +262,8 @@ private:
 	void updatePatternLength(bool repaint = true);
 	void updatePattern(bool repaint = true);
 
+	void updateChannelsLength(bool repaint = true);
+
 	void updateSamplesListBox(bool repaint = true);
 	void updateInstrumentsListBox(bool repaint = true);
 
@@ -606,6 +608,17 @@ private:
   void eventKeyDownBinding_CoarseBpmMinus();
   void eventKeyDownBinding_AddPlus();
   void eventKeyDownBinding_AddMinus();
+  void eventKeyDownBinding_AddSet(int add);
+  void eventKeyDownBinding_AddSet0();
+  void eventKeyDownBinding_AddSet1();
+  void eventKeyDownBinding_AddSet2();
+  void eventKeyDownBinding_AddSet3();
+  void eventKeyDownBinding_AddSet4();
+  void eventKeyDownBinding_AddSet5();
+  void eventKeyDownBinding_AddSet6();
+  void eventKeyDownBinding_AddSet7();
+  void eventKeyDownBinding_AddSet8();
+  void eventKeyDownBinding_AddSet9();
   void eventKeyDownBinding_LoadInstrument();
 
 private:

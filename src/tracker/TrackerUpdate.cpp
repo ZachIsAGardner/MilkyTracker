@@ -417,6 +417,14 @@ void Tracker::updatePatternLength(bool repaint)
 	screen->paintControl(container, repaint);
 }
 
+void Tracker::updateChannelsLength(bool repaint)
+{
+	PPContainer* container = static_cast<PPContainer*>(screen->getControlByID(CONTAINER_SONGEDIT));
+	static_cast<PPStaticText*>(container->getControlByID(STATICTEXT_CHANNELS_LENGTH))->setIntValue(getPatternEditor()->getNumChannels(),2);
+	
+	screen->paintControl(container, repaint);
+}
+
 ///////////////////////////////////////////
 // update pattern and it's length and index
 ///////////////////////////////////////////
@@ -425,6 +433,7 @@ void Tracker::updatePattern(bool repaint)
 	updatePatternEditorControl(false);
 	updatePatternIndex(false);
 	updatePatternLength(false);
+	updateChannelsLength(false);
 	
 	if (repaint)
 		screen->update();
@@ -540,6 +549,7 @@ void Tracker::updateSongInfo(bool repaint/* = true*/)
 				
 	updatePatternIndex(repaint);
 	updatePatternLength(repaint);
+	updateChannelsLength(repaint);
 				
 	updateInstrumentsListBox(repaint);
 	updateSamplesListBox(repaint);				
@@ -728,6 +738,7 @@ bool Tracker::updateSongPosition(pp_int32 pos/* = -1*/, pp_int32 row/* = -1*/, b
 				updateSongLength(false);
 				updatePatternIndex(false);
 				updatePatternLength(false);
+				updateChannelsLength(false);
 			}
 
 			// only follow song if the pattern index matches the one from the
@@ -1084,6 +1095,7 @@ void Tracker::updateAfterTabSwitch()
 				
 	updatePatternIndex(false);
 	updatePatternLength(false);
+	updateChannelsLength(false);
 				
 	updateInstrumentsListBox(false);
 	updateSamplesListBox(false);				

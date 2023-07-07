@@ -29,7 +29,7 @@
 #define SCROLLBAR__H
 
 //#ifndef __LOWRES__
-	#define SCROLLBUTTONSIZE 10
+	#define SCROLLBUTTONSIZE 14
 //#else
 //	#define SCROLLBUTTONSIZE 8
 //#endif

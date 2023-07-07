@@ -247,7 +247,7 @@ void SectionAdvancedEdit::init(pp_int32 px, pp_int32 py)
 {
 	PPScreen* screen = tracker.screen;
 
-	PPContainer* container = new PPContainer(CONTAINER_ADVEDIT, tracker.screen, this, PPPoint(px, py), PPSize(320,UPPERLEFTSECTIONHEIGHT), false);
+	PPContainer* container = new PPContainer(CONTAINER_ADVEDIT, tracker.screen, this, PPPoint(px, py), PPSize(TOP_WIDTH,TOP_HEIGHT), false);
 	container->setColor(TrackerConfig::colorThemeMain);	
 	tracker.screen->addControl(container);
 
@@ -255,8 +255,8 @@ void SectionAdvancedEdit::init(pp_int32 px, pp_int32 py)
 
 	PPSize size = container->getSize();
 
-	pp_int32 buttonWidth = 8*4+4;
-	pp_int32 buttonHeight = 11;
+	pp_int32 buttonWidth = E_WIDTH;
+	pp_int32 buttonHeight = E_HEIGHT;
 	
 	pp_int32 x = px+container->getSize().width-(buttonWidth+4);
 	pp_int32 y = py+container->getSize().height-(buttonHeight+4);

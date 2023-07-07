@@ -46,7 +46,7 @@ public:
 	
 	virtual void paint(PPGraphicsAbstract* g)
 	{
-		if (!isVisible())
+		// if (!isVisible())
 			return;
 	
 		PPButton::paint(g);		
@@ -247,7 +247,7 @@ void PPScrollbar::setBarSize(pp_int32 size, bool repaint /* = true */)
 
 	currentBarSize = size;
 	
-	pp_int32 newSize = (((horizontal?this->size.width:this->size.height) - SCROLLBUTTONSIZE*2) * size)>>16;
+	pp_int32 newSize = (((horizontal?this->size.width:this->size.height)) * size)>>16;
 
 	if (horizontal)
 	{
@@ -272,7 +272,7 @@ void PPScrollbar::setBarPosition(pp_int32 pos, bool repaint /* = true */)
 
 	pp_int32 size = (horizontal?buttonBar->getSize().width:buttonBar->getSize().height);
 
-	pp_int32 entireSize = (horizontal?this->size.width:this->size.height) - SCROLLBUTTONSIZE*2;
+	pp_int32 entireSize = (horizontal?this->size.width:this->size.height);
 
 	pp_int32 maxPos = entireSize-size;
 
@@ -281,9 +281,9 @@ void PPScrollbar::setBarPosition(pp_int32 pos, bool repaint /* = true */)
 	PPPoint p = location;
 
 	if (horizontal)
-		p.x+=newPos + SCROLLBUTTONSIZE;
+		p.x+=newPos;
 	else
-		p.y+=newPos + SCROLLBUTTONSIZE;
+		p.y+=newPos;
 
 	buttonBar->setLocation(p);
 
@@ -547,7 +547,7 @@ pp_int32 PPScrollbar::handleEvent(PPObject* sender, PPEvent* event)
 			if (p->x < buttonBar->getLocation().x)
 			{
 				pp_int32 bsize = buttonBar->getSize().width;
-				pp_int32 entireSize = size.width - SCROLLBUTTONSIZE*2;
+				pp_int32 entireSize = size.width;
 
 				float f = (float)entireSize/(float)(entireSize - bsize);
 
@@ -562,7 +562,7 @@ pp_int32 PPScrollbar::handleEvent(PPObject* sender, PPEvent* event)
 			else if (p->x > buttonBar->getLocation().x + buttonBar->getSize().width)
 			{
 				pp_int32 bsize = buttonBar->getSize().width;
-				pp_int32 entireSize = size.width - SCROLLBUTTONSIZE*2;
+				pp_int32 entireSize = size.width;
 
 				float f = (float)entireSize/(float)(entireSize - bsize);
 
@@ -582,7 +582,7 @@ pp_int32 PPScrollbar::handleEvent(PPObject* sender, PPEvent* event)
 			if (p->y < buttonBar->getLocation().y)
 			{
 				pp_int32 bsize = buttonBar->getSize().height;
-				pp_int32 entireSize = size.height - SCROLLBUTTONSIZE*2;
+				pp_int32 entireSize = size.height;
 
 				float f = (float)entireSize/(float)(entireSize - bsize);
 
@@ -597,7 +597,7 @@ pp_int32 PPScrollbar::handleEvent(PPObject* sender, PPEvent* event)
 			else if (p->y > buttonBar->getLocation().y + buttonBar->getSize().height)
 			{
 				pp_int32 bsize = buttonBar->getSize().height;
-				pp_int32 entireSize = size.height - SCROLLBUTTONSIZE*2;
+				pp_int32 entireSize = size.height;
 
 				float f = (float)entireSize/(float)(entireSize - bsize);
 

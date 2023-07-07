@@ -1032,7 +1032,7 @@ void SectionSamples::showSection(bool bShow)
 {
 	containerEntire->show(bShow);
 }
-int originalHeight = 0;
+int originalHeight2 = 0;
 void SectionSamples::realign()
 {
 	pp_uint32 maxShould = tracker.MAXEDITORHEIGHT();
@@ -1049,13 +1049,13 @@ void SectionSamples::realign()
 
 	if (visible)
 	{
-        originalHeight = control->getSize().height;
+        originalHeight2 = control->getSize().height;
         control->setSize(PPSize(screen->getWidth(),
-								tracker.MAXEDITORHEIGHT()-tracker.SAMPLESECTIONDEFAULTHEIGHT()-tracker.UPPERSECTIONDEFAULTHEIGHT()+1));
+								originalHeight2-tracker.SAMPLESECTIONDEFAULTHEIGHT()));
 	}
 	else
 	{
-		control->setSize(PPSize(screen->getWidth(),originalHeight));
+		control->setSize(PPSize(screen->getWidth(),originalHeight2));
 	}
 }
 
