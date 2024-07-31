@@ -656,7 +656,8 @@ void Tracker::eventKeyDownBinding_InvokeSectionDiskMenu()
 	if (screen->getModalControl())
 		return;
 
-	sectionSwitcher->showUpperSection(sectionDiskMenu, false);
+	sectionSwitcher->showUpperSection(sectionHDRecorder);
+	// sectionSwitcher->showUpperSection(sectionDiskMenu, false);
 }
 
 void Tracker::eventKeyDownBinding_InvokeSectionHDRecorder()

@@ -484,8 +484,9 @@ void Tracker::initSectionTopButtons(pp_int32 x, pp_int32 y)
     button = new PPButton(MAINMENU_DISKMENU, screen, this, point, PPSize(E_WIDTH, E_HEIGHT));
     button->setText("Export");
     containerTopButtons->addControl(button);
-
-    point.x += E_WIDTH + (P);
+    
+    // CONFIG
+    point.x += E_WIDTH + (P) - 1000;
     point.x += E_WIDTH + (P);
     point.x += (E_WIDTH / 2) + (P);
     button = new PPButton(MAINMENU_CONFIG, screen, this, point, PPSize(E_WIDTH, E_HEIGHT));
@@ -511,14 +512,14 @@ void Tracker::initSectionOrderlist(pp_int32 x, pp_int32 y)
     containerOrderlist->addControl(button);
 
     // DUP
-    button = new PPButton(BUTTON_ORDERLIST_SEQENTRY, screen, this, PPPoint(-1000, -1000), PPSize(18, 11));
+    button = new PPButton(-1, screen, this, PPPoint(-1000, -1000), PPSize(18, 11));
     // button->setVerticalText(true);
     button->setXOffset(-1);
     button->setText("Seq");
     button->setFont(PPFont::getFont(PPFont::FONT_TINY));
     containerOrderlist->addControl(button);
 
-    button = new PPButton(BUTTON_ORDERLIST_CLNENTRY, screen, this, PPPoint(-1000, -1000), PPSize(18, 11));
+    button = new PPButton(-1, screen, this, PPPoint(-1000, -1000), PPSize(18, 11));
     // button->setVerticalText(true);
     button->setXOffset(-1);
     button->setText("Cln");
@@ -551,6 +552,16 @@ void Tracker::initSectionOrderlist(pp_int32 x, pp_int32 y)
     button->setText(TrackerConfig::stringButtonMinus);
     containerOrderlist->addControl(button);
 
+    // Clone/Sequence
+
+    button = new PPButton(BUTTON_ORDERLIST_CLNENTRY, screen, this, PPPoint(x + P, y + (P * 2) + (E_HEIGHT * 2)), PPSize(E_WIDTH_SMALL, E_HEIGHT));
+    button->setText("C");
+    containerOrderlist->addControl(button);
+
+    button = new PPButton(BUTTON_ORDERLIST_SEQENTRY, screen, this, PPPoint(x + P + E_WIDTH_SMALL, y + (P * 2) + (E_HEIGHT * 2)), PPSize(E_WIDTH_SMALL, E_HEIGHT));
+    button->setText("S");
+    containerOrderlist->addControl(button);
+    
     // ...
 
     button = new PPButton(BUTTON_ORDERLIST_SONGLENGTH_PLUS, screen, this, PPPoint(-1000, -1000), PPSize(16, 11));
@@ -586,8 +597,8 @@ void Tracker::initSectionOrderlist(pp_int32 x, pp_int32 y)
     staticText = new PPStaticText(STATICTEXT_ORDERLIST_REPEAT, screen, NULL, PPPoint(-1000, -1000), "", false);
     containerOrderlist->addControl(staticText);
 
-    listBoxOrderList = new PPListBox(LISTBOX_ORDERLIST, screen, this, PPPoint(x + 2, y + ((E_HEIGHT + P) * 2) + P), PPSize(134, (TOP_HEIGHT - E_HEIGHT) - ((E_HEIGHT + P) * 2) - (P * 4)), true, false, true, true);
-    listBoxOrderList->setAutoHideVScroll(true);
+    listBoxOrderList = new PPListBox(LISTBOX_ORDERLIST, screen, this, PPPoint(x + 2, y + ((E_HEIGHT + P) * 3)), PPSize(134, (TOP_HEIGHT - E_HEIGHT) - ((E_HEIGHT + P) * 3) - (P * 3)), true, false, true, true);
+    listBoxOrderList->setAutoHideVScroll(false);
     listBoxOrderList->setBorderColor(TrackerConfig::colorThemeMain);
     listBoxOrderList->setCenterSelection(true);
     listBoxOrderList->setSelectOnScroll(true);

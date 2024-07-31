@@ -653,7 +653,7 @@ void Tracker::updateWindowTitle()
 {
 	if (moduleEditor->hasChanged() != lastState)
 	{
-		PPSystemString title = "Zagawracker 0.1 - ";
+		PPSystemString title = "ZagaWracker - ";
 
 		title.append(currentFileName);
 

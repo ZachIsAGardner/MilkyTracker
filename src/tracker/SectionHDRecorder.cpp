@@ -373,44 +373,41 @@ void SectionHDRecorder::init(pp_int32 px, pp_int32 py)
 {
 	PPScreen* screen = tracker.screen;
 
-	PPContainer* container = new PPContainer(CONTAINER_HDRECORDER, tracker.screen, this, PPPoint(px, py), PPSize(320,UPPERLEFTSECTIONHEIGHT), false);
+	PPContainer* container = new PPContainer(CONTAINER_HDRECORDER, tracker.screen, this, PPPoint(px, py), PPSize(TOP_WIDTH,TOP_HEIGHT), false);
 	container->setColor(TrackerConfig::colorThemeMain);	
 	tracker.screen->addControl(container);
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(px + 2, py + 2), "HD Recorder", true, true));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(px + 2, py + 2), "Exporter", true, true));
 
 	PPSize size = container->getSize();
 
-	pp_int32 buttonWidth = 8*4+4;
-	pp_int32 buttonHeight = 22;
+	pp_int32 buttonWidth = E_WIDTH;
+	pp_int32 buttonHeight = E_HEIGHT;
 	
 	pp_int32 x = px+container->getSize().width-(buttonWidth+4);
 	pp_int32 y = py+container->getSize().height-(buttonHeight+4);
 	
 	pp_int32 dy = 11+20;
 	// Horizontal seperator above exit
-	container->addControl(new PPSeperator(0, screen, PPPoint(px+2, py + size.height - dy), size.width-5, container->getColor(), true));	
+	container->addControl(new PPSeperator(0, screen, PPPoint(px+2 - 1000, py + size.height - dy), size.width-5, container->getColor(), true));	
 
 #ifdef __LOWRES__
 	y-=2;
 	buttonHeight+=4;
 
 	PPButton* button = new PPButton(MAINMENU_SMPEDIT, screen, &tracker, PPPoint(x, y), PPSize(buttonWidth, buttonHeight/3));
-	button->setFont(PPFont::getFont(PPFont::FONT_TINY));
 	button->setText("Smp.Ed.");
 	container->addControl(button);
 	
 	y+=button->getSize().height+1;
 
 	button = new PPButton(MAINMENU_INSEDIT, screen, &tracker, PPPoint(x, y), PPSize(buttonWidth, buttonHeight/3));
-	button->setFont(PPFont::getFont(PPFont::FONT_TINY));
 	button->setText("Ins.Ed.");
 	container->addControl(button);
 
 	y+=button->getSize().height+1;
 
 	button = new PPButton(HDRECORD_BUTTON_EXIT, screen, this, PPPoint(x, y), PPSize(buttonWidth,buttonHeight/3));
-	button->setFont(PPFont::getFont(PPFont::FONT_TINY));
 	button->setText("Exit");
 	container->addControl(button);
 #else
@@ -421,10 +418,10 @@ void SectionHDRecorder::init(pp_int32 px, pp_int32 py)
 
 	// add frequencies
 	pp_int32 x2 = px;
-	pp_int32 y2 = py + 11 + 3 + 4;  
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 4, y2), "Output:", true));
+	pp_int32 y2 = py + 11 + 3 + 4 - 70;  
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 4 - 1000, y2), "Output:", true));
 
-	PPRadioGroup* radioGroup = new PPRadioGroup(HDRECORD_RADIOGROUP_FREQUENCIES, screen, this, PPPoint(x2+2, y2+10), PPSize(88, TrackerConfig::numMixFrequencies*14));
+	PPRadioGroup* radioGroup = new PPRadioGroup(HDRECORD_RADIOGROUP_FREQUENCIES, screen, this, PPPoint(x2+2-1000, y2+10), PPSize(88, TrackerConfig::numMixFrequencies*14));
 	radioGroup->setColor(TrackerConfig::colorThemeMain);
 
 	for (pp_int32 j = 0; j < TrackerConfig::numMixFrequencies; j++)
@@ -460,66 +457,64 @@ void SectionHDRecorder::init(pp_int32 px, pp_int32 py)
 	y2-=9;
 
 	// --------- mixvol. slider
-	container->addControl(new PPSeperator(0, screen, PPPoint(x2 + 146 - 4, y2-3), 28, TrackerConfig::colorThemeMain, false));
+	container->addControl(new PPSeperator(0, screen, PPPoint(x2 + 2 - 4 - 1000, y2 + 30-3), 28, TrackerConfig::colorThemeMain, false));
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 146, y2), "Mixer Volume:", true));
-	container->addControl(new PPStaticText(HDRECORD_STATICTEXT_MIXERVOLUME, NULL, NULL, PPPoint(x2 + 146, y2 + 14), "100%", false));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2 + 2, y2 + 30), "Volume:", true));
+	container->addControl(new PPStaticText(HDRECORD_STATICTEXT_MIXERVOLUME, NULL, NULL, PPPoint(x2 + 2, y2 + 30 + 14), "100%", false));
 
-	PPSlider* slider = new PPSlider(HDRECORD_SLIDER_MIXERVOLUME, screen, this, PPPoint(x2 + 146 + 4*8+4, y2 + 14-1), 91, true);
+	PPSlider* slider = new PPSlider(HDRECORD_SLIDER_MIXERVOLUME, screen, this, PPPoint(x2 + 2 + 4*8+20, y2 + 30 + 14-1), 91, true);
 	slider->setMaxValue(256);
 	slider->setBarSize(16384);
 	container->addControl(slider);
 
-	button = new PPButton(HDRECORD_BUTTON_MIXER_AUTO, screen, this, PPPoint(x2 + 154 + 12*8+1, y2), PPSize(21, 9));
-	button->setFont(PPFont::getFont(PPFont::FONT_TINY));
+	button = new PPButton(HDRECORD_BUTTON_MIXER_AUTO, screen, this, PPPoint(x2 + 155, y2 + 40), PPSize(buttonWidth, buttonHeight));
 	button->setText("Auto");
 	container->addControl(button);
 
-	container->addControl(new PPSeperator(0, screen, PPPoint(x2 + 154 + 4*8 + 4 + 80 + 5, y2-3), 28, TrackerConfig::colorThemeMain, false));
+	container->addControl(new PPSeperator(0, screen, PPPoint(x2 + 154 + 4*8 + 4 + 80 + 5 - 1000, y2-3), 28, TrackerConfig::colorThemeMain, false));
 
 	// -------------- quality --------------
 	y2 = py + 11 + 3 + 4;
-	x2 += /*radioGroup->getSize().width*/88;
+	// x2 += /*radioGroup->getSize().width*/88;
 
 	pp_int32 x3 = x2 - 6;
-	container->addControl(new PPSeperator(0, screen, PPPoint(x2 - 6, py+16 - 2), container->getSize().height - (dy+14), TrackerConfig::colorThemeMain, false));
+	container->addControl(new PPSeperator(0, screen, PPPoint(x2 - 6 - 1000, py+16 - 2), container->getSize().height - (dy+14), TrackerConfig::colorThemeMain, false));
 	
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2, y2), "Quality:", true));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2- 1000, y2), "Quality:", true));
 	
 	y2+=13;
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2, y2), "Resampler:", true));
-	button = new PPButton(HDRECORD_BUTTON_RESAMPLING, screen, this, PPPoint(x2 + 8*10 + 4, y2-2), PPSize(6*7 + 4, 11));
-	button->setFont(PPFont::getFont(PPFont::FONT_TINY));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2- 1000, y2), "Resampler:", true));
+	button = new PPButton(HDRECORD_BUTTON_RESAMPLING, screen, this, PPPoint(x2 + 8*10 + 4- 1000, y2-2), PPSize(6*7 + 4, 11));
 	button->setText("Select" PPSTR_PERIODS);
 	container->addControl(button);
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2, y2 + 12), "Volume ramping:", true));
-	container->addControl(new PPCheckBox(HDRECORD_CHECKBOX_RAMPING, screen, this, PPPoint(x2 + 15*8, y2-1+12)));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2- 1000, y2 + 12), "Volume ramping:", true));
+	container->addControl(new PPCheckBox(HDRECORD_CHECKBOX_RAMPING, screen, this, PPPoint(x2 + 15*8- 1000, y2-1+12)));
 	
 	y2+=24;
 
 	// Horizontal seperator above exit
-	container->addControl(new PPSeperator(0, screen, PPPoint(x3+1, y2), size.width-5 - (x3-px), container->getColor(), true));	
+	container->addControl(new PPSeperator(0, screen, PPPoint(x3+1 - 1000, y2), size.width-5 - (x3-px), container->getColor(), true));	
 
 	y2+=5;
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2, y2), "Allow muting:", true));
-	container->addControl(new PPCheckBox(HDRECORD_CHECKBOX_ALLOWMUTING, screen, this, PPPoint(x2 + 15*8, y2-1), false));	
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2- 1000, y2), "Allow muting:", true));
+	container->addControl(new PPCheckBox(HDRECORD_CHECKBOX_ALLOWMUTING, screen, this, PPPoint(x2 + 15*8- 1000, y2-1), false));	
 
-	x2 += 18*8-4;
-	container->addControl(new PPSeperator(0, screen, PPPoint(x2 - 6, py+16 - 2), container->getSize().height - (dy+28), TrackerConfig::colorThemeMain, false));
+	// x2 += 18*8-4;
+	container->addControl(new PPSeperator(0, screen, PPPoint(x2 - 6- 1000, py+16 - 2), container->getSize().height - (dy+28), TrackerConfig::colorThemeMain, false));
 
 	y2 = py + 11 + 3 + 4;
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2, y2), "Range:", true));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2- 1000, y2), "Range:", true));
 
 	y2+=13;
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2, y2), "From", true));
-	container->addControl(new PPStaticText(HDRECORD_STATICTEXT_START, screen, this, PPPoint(x2+5*8, y2), "xx"));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2- 1000, y2), "From", true));
+	container->addControl(new PPStaticText(HDRECORD_STATICTEXT_START, screen, this, PPPoint(x2+5*8- 1000, y2), "xx"));
 
-	button = new PPButton(HDRECORD_BUTTON_START_PLUS, screen, this, PPPoint(x2+7*8+3, y2-1), PPSize(12, 9));
+	button = new PPButton(HDRECORD_BUTTON_START_PLUS, screen, this, PPPoint(x2+7*8+3- 1000, y2-1), PPSize(12, 9));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	
@@ -529,10 +524,10 @@ void SectionHDRecorder::init(pp_int32 px, pp_int32 py)
 
 	y2+=12;
 
-	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2, y2), "To", true));
-	container->addControl(new PPStaticText(HDRECORD_STATICTEXT_END, screen, this, PPPoint(x2+5*8, y2), "xx"));
+	container->addControl(new PPStaticText(0, NULL, NULL, PPPoint(x2- 1000, y2), "To", true));
+	container->addControl(new PPStaticText(HDRECORD_STATICTEXT_END, screen, this, PPPoint(x2+5*8- 1000, y2), "xx"));
 
-	button = new PPButton(HDRECORD_BUTTON_END_PLUS, screen, this, PPPoint(x2+7*8+3, y2-1), PPSize(12, 9));
+	button = new PPButton(HDRECORD_BUTTON_END_PLUS, screen, this, PPPoint(x2+7*8+3- 1000, y2-1), PPSize(12, 9));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	
@@ -542,26 +537,23 @@ void SectionHDRecorder::init(pp_int32 px, pp_int32 py)
 
 	y2+=15;
 
-	buttonWidth = 6*8 + 4;
-	buttonHeight = 12;
-
-	button = new PPButton(HDRECORD_BUTTON_RECORD, screen, this, PPPoint(x2, y2), PPSize(buttonWidth,buttonHeight));
+	button = new PPButton(HDRECORD_BUTTON_RECORD, screen, this, PPPoint(x2- 1000, y2), PPSize(buttonWidth,buttonHeight));
 	button->setText("Record");
 	container->addControl(button);
 
-	button = new PPButton(HDRECORD_BUTTON_RECORD_AS, screen, this, PPPoint(x2+buttonWidth+1, y2), PPSize(34,buttonHeight));
-	button->setText("As" PPSTR_PERIODS);
+	button = new PPButton(HDRECORD_BUTTON_RECORD_AS, screen, this, PPPoint(x2 + 2, y2 + 30), PPSize(buttonWidth,buttonHeight));
+	button->setText("Export");
 	container->addControl(button);
 
 	y2+=buttonHeight+2;
 	
-	container->addControl(new PPSeperator(0, screen, PPPoint(x3+1, y2), size.width-5 - (x3-px), container->getColor(), true));	
+	container->addControl(new PPSeperator(0, screen, PPPoint(x3+1 - 1000, y2), size.width-5 - (x3-px), container->getColor(), true));	
 
 	y2+=5;
 
 	x2 = x3+6;
 
-	button = new PPButton(HDRECORD_BUTTON_RECORDINGMODE, screen, this, PPPoint(x2-3, y2-2), PPSize(5*8+2,buttonHeight-1), false);
+	button = new PPButton(HDRECORD_BUTTON_RECORDINGMODE, screen, this, PPPoint(x2-3- 1000, y2-2), PPSize(5*8+2,buttonHeight-1), false);
 	button->setColor(TrackerConfig::colorThemeMain);
 	button->setTextColor(PPUIConfig::getInstance()->getColor(PPUIConfig::ColorStaticText));
 	button->setText("File:");
@@ -570,17 +562,17 @@ void SectionHDRecorder::init(pp_int32 px, pp_int32 py)
 
 	x2+=5*8+4;
 
-	PPStaticText* text = new PPStaticText(HDRECORD_STATICTEXT_SAVETOFILENAME, NULL, NULL, PPPoint(x2, y2), "123456789012345678901234", false, false, true);
+	PPStaticText* text = new PPStaticText(HDRECORD_STATICTEXT_SAVETOFILENAME, NULL, NULL, PPPoint(x2- 1000, y2), "123456789012345678901234", false, false, true);
 	text->setExtent(PPSize(23*8, 8));
 	container->addControl(text);
 
 	x2+=2;
-	text = new PPStaticText(HDRECORD_STATICTEXT_INS, NULL, NULL, PPPoint(x2, y2), "Ins:xx", false);
+	text = new PPStaticText(HDRECORD_STATICTEXT_INS, NULL, NULL, PPPoint(x2- 1000, y2), "Ins:xx", false);
 	container->addControl(text);
 
 	x2+=text->getSize().width + 1 + 8;
 
-	button = new PPButton(HDRECORD_BUTTON_INS_PLUS, screen, this, PPPoint(x2, y2-1), PPSize(13, 9));
+	button = new PPButton(HDRECORD_BUTTON_INS_PLUS, screen, this, PPPoint(x2- 1000, y2-1), PPSize(13, 9));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	
@@ -590,12 +582,12 @@ void SectionHDRecorder::init(pp_int32 px, pp_int32 py)
 
 	x2 = button->getLocation().x + button->getSize().width + 10;
 
-	text = new PPStaticText(HDRECORD_STATICTEXT_SMP, NULL, NULL, PPPoint(x2, y2), "Smp:xx", false);
+	text = new PPStaticText(HDRECORD_STATICTEXT_SMP, NULL, NULL, PPPoint(x2- 1000, y2), "Smp:xx", false);
 	container->addControl(text);
 
 	x2+=text->getSize().width + 1 + 8;
 
-	button = new PPButton(HDRECORD_BUTTON_SMP_PLUS, screen, this, PPPoint(x2, y2-1), PPSize(13, 9));
+	button = new PPButton(HDRECORD_BUTTON_SMP_PLUS, screen, this, PPPoint(x2- 1000, y2-1), PPSize(13, 9));
 	button->setText(TrackerConfig::stringButtonPlus);
 	container->addControl(button);
 	
